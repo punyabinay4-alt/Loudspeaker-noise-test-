@@ -3,61 +3,69 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LOUDSPEAKER NOISE CHECKER</title>
+<title>LOUDSPEAKER NOISE CHECKER - By Punya</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@800;900&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
-body{background:#020513;display:flex;justify-content:center;padding:14px;min-height:100vh}
-.box{width:100%;max-width:410px;background:radial-gradient(120% 120% at 50% 0%, #1c2750 0%, #0e1430 55%, #080c22 100%);border-radius:32px;padding:18px;border:1px solid #2d3f7a;box-shadow:0 30px 80px rgba(0,0,0,.7)}
+body{background:#040718;display:flex;justify-content:center;padding:14px;min-height:100vh}
+.box{width:100%;max-width:410px;background:linear-gradient(180deg,#1e294f 0%,#121933 50%,#0a0f24 100%);border-radius:32px;padding:18px;border:1px solid #2e3f72;box-shadow:0 25px 70px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.1)}
 .head{text-align:center}
-.head h1{font-family:'Orbitron',sans-serif;color:#fff;font-size:20px;letter-spacing:1px;font-weight:900}
+.head h1{font-family:'Orbitron',sans-serif;color:#fff;font-size:20px;letter-spacing:.5px;font-weight:900}
 .head h1 span{color:#ff3d00}
-.head p{color:#7d8db5;font-size:10px;letter-spacing:1.5px;margin-top:6px;font-weight:600;text-transform:uppercase}
+.head p{color:#ffcc66;font-size:10px;letter-spacing:.8px;margin-top:5px;font-weight:600;background:rgba(255,204,102,.1);display:inline-block;padding:4px 10px;border-radius:20px;border:1px solid rgba(255,204,102,.2)}
 .main-meter{display:flex;gap:14px;margin-top:18px;align-items:flex-end}
-.left{flex:1;background:#000;border-radius:24px;padding:14px;border:1px solid #1e2a4a;text-align:center}
-.big{font-family:'Orbitron',sans-serif;font-size:80px;font-weight:900;color:#fff;line-height:1;letter-spacing:-3px}
+.left{flex:1;background:radial-gradient(circle at top, #151c36 0%, #000 70%);border-radius:24px;padding:14px;border:1px solid #222e52;text-align:center;position:relative;overflow:hidden}
+.left::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,#ff3d00,#ffcc00,#ff3d00)}
+.big{font-family:'Orbitron',sans-serif;font-size:84px;font-weight:900;color:#fff;line-height:1;letter-spacing:-2px;text-shadow:0 0 20px rgba(255,61,0,.5)}
 .unit{color:#ff3d00;font-weight:800;letter-spacing:5px;font-size:11px;margin-top:2px;font-family:'Orbitron',sans-serif}
-.src{margin-top:10px;background:#0f142e;border:1px solid #25325f;border-left:3px solid #ff3d00;border-radius:12px;padding:10px;color:#ffeb3b;font-weight:700;font-size:12px;min-height:42px;display:flex;align-items:center;justify-content:center;text-align:center}
-.status{margin-top:8px;padding:9px;border-radius:12px;font-weight:800;font-size:11px;text-align:center}
-.s1{background:rgba(0,230,118,.1);color:#00e676;border:1px solid #00a652}.s2{background:rgba(255,235,59,.1);color:#ffeb3b;border:1px solid #b8a600}.s3{background:rgba(255,145,0,.15);color:#ff9100;border:1px solid #ff6d00}.s4{background:rgba(255,23,68,.15);color:#ff1744;border:1px solid #ff1744;animation:blink.8s infinite}
+.src{margin-top:10px;background:linear-gradient(135deg,#1a2040,#12172e);border:1px solid #2a3a6a;border-left:3px solid #ff3d00;border-radius:14px;padding:11px;color:#ffeb3b;font-weight:700;font-size:12px;min-height:42px;display:flex;align-items:center;justify-content:center;text-align:center;box-shadow:inset 0 0 15px rgba(255,61,0,.1)}
+.status{margin-top:8px;padding:9px;border-radius:12px;font-weight:800;font-size:11px;text-align:center;transition:.3s}
+.s1{background:rgba(0,230,118,.12);color:#00e676;border:1px solid #00a652}.s2{background:rgba(255,235,59,.12);color:#ffeb3b;border:1px solid #b8a600}.s3{background:rgba(255,145,0,.15);color:#ff9100;border:1px solid #ff6d00}.s4{background:rgba(255,23,68,.18);color:#ff1744;border:1px solid #ff1744;box-shadow:0 0 15px rgba(255,23,68,.3);animation:blink.7s infinite}
 @keyframes blink{50%{opacity:.7}}
-.thermo{width:58px;background:#000;border-radius:30px;border:1px solid #333;padding:8px 8px 14px;display:flex;flex-direction:column;align-items:center}
-.tube{width:26px;height:270px;background:#0a0a0a;border-radius:20px;border:1px solid #222;overflow:hidden;display:flex;flex-direction:column-reverse;position:relative}
-.fill{width:100%;height:0%;background:linear-gradient(180deg,#ff1744 0%,#ff9100 35%,#ffeb3b 65%,#00e676 100%);transition:height.6s ease;border-radius:20px}
-.bulb{width:38px;height:38px;background:radial-gradient(circle at 30% 30%, #ff6a00, #ff1744);border-radius:50%;margin-top:-10px;border:2px solid #ff3d00;box-shadow:0 0 20px #ff1744}
-.marks{position:absolute;right:2px;top:10px;height:260px;display:flex;flex-direction:column;justify-content:space-between;color:#4a5a7a;font-size:7px;font-weight:800}
+.thermo{width:60px;background:linear-gradient(180deg,#0a0a0a,#000);border-radius:32px;border:1px solid #2a2a2a;padding:8px 8px 14px;display:flex;flex-direction:column;align-items:center;box-shadow:inset 0 0 10px #000}
+.tube{width:26px;height:272px;background:#0f0f0f;border-radius:20px;border:1px solid #222;overflow:hidden;display:flex;flex-direction:column-reverse;position:relative}
+.fill{width:100%;height:0%;background:linear-gradient(180deg,#ff1744 0%,#ff9100 40%,#ffeb3b 70%,#00e676 100%);transition:height.15s linear;border-radius:20px;box-shadow:0 0 12px rgba(255,61,0,.6)}
+.bulb{width:40px;height:40px;background:radial-gradient(circle at 30% 30%,#ff8c00,#ff1744);border-radius:50%;margin-top:-10px;border:2px solid #ff3d00;box-shadow:0 0 22px #ff3d00, inset 0 0 10px rgba(255,255,255,.3)}
+.marks{position:absolute;right:3px;top:12px;height:260px;display:flex;flex-direction:column;justify-content:space-between;color:#5a6a8a;font-size:7px;font-weight:800;text-align:right}
 .grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px}
-.k{background:#0f1733;border:1px solid #1e2e56;border-radius:14px;padding:9px;text-align:center}.k b{color:#6b7ca3;font-size:7px;display:block}.k span{color:#fff;font-size:13px;font-weight:800;margin-top:2px;display:block;font-family:'Orbitron',sans-serif}
+.k{background:linear-gradient(180deg,#162040,#0f1733);border:1px solid #1e2e56;border-radius:14px;padding:9px;text-align:center;box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+.k b{color:#6b7ca3;font-size:7px;display:block;letter-spacing:1px}.k span{color:#fff;font-size:13px;font-weight:800;margin-top:2px;display:block;font-family:'Orbitron',sans-serif}
 .detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
-.d{background:#0f1430;border:1px solid #1e2e56;border-radius:14px;padding:10px;text-align:center}.d b{color:#6b7ca3;font-size:7px;display:block}.d span{color:#fff;font-size:12px;font-weight:800;margin-top:3px;display:block}
-canvas{width:100%;height:72px;background:#000;border-radius:14px;margin-top:12px;border:1px solid #1e2a4a}
-.btn{width:100%;padding:15px;border:none;border-radius:14px;font-weight:800;font-size:14px;margin-top:12px;cursor:pointer;letter-spacing:.5px}
-.start{background:linear-gradient(135deg,#ff3d00,#ff8c00);color:#fff;box-shadow:0 12px 25px rgba(255,61,0,.35)}.stop{background:#1e2a4e;color:#8aa0c8}
-.footer{margin-top:16px;text-align:center;padding-top:12px;border-top:1px solid #1e2e56;color:#7d8db5;font-size:9px;line-height:1.6;letter-spacing:1px;font-weight:600}
+.d{background:linear-gradient(180deg,#131a36,#0f1430);border:1px solid #1e2e56;border-radius:14px;padding:10px;text-align:center}
+.d b{color:#6b7ca3;font-size:7px;display:block}.d span{color:#ffeb3b;font-size:12px;font-weight:800;margin-top:3px;display:block;font-family:'Orbitron',sans-serif}
+canvas{width:100%;height:74px;background:radial-gradient(circle at center,#0c122a 0%,#000 100%);border-radius:14px;margin-top:12px;border:1px solid #1e2a4a;box-shadow:inset 0 0 20px rgba(0,0,0,.8)}
+.btn{width:100%;padding:15px;border:none;border-radius:16px;font-weight:800;font-size:14px;margin-top:12px;cursor:pointer;letter-spacing:.5px;transition:.2s;font-family:'Orbitron',sans-serif}
+.start{background:linear-gradient(135deg,#ff3d00,#ff6a00);color:#fff;box-shadow:0 12px 24px rgba(255,61,0,.35)}.start:active{transform:scale(.98)}
+.stop{background:#1e2a4e;color:#8aa0c8}
+.footer{margin-top:16px;text-align:center;padding-top:12px;border-top:1px solid #1e2e56;color:#5a6e94;font-size:9px;line-height:1.7;letter-spacing:.6px}
 </style>
 </head>
 <body>
 <div class="box">
-<div class="head"><h1>LOUDSPEAKER <span>NOISE CHECKER</span></h1><p>Hear The Truth • Feel The Beat • Genuine Data</p></div>
+<div class="head"><h1>LOUDSPEAKER <span>NOISE CHECKER</span></h1><p>💛 Sun Bhi Lo, Samajh Bhi Lo - Your Sound Ka Sach 💛</p></div>
 
 <div class="main-meter">
 <div class="left">
 <div class="big" id="big">--</div>
-<div class="unit">DECIBEL SPL</div>
+<div class="unit">DECIBEL</div>
 <div class="src" id="src">TAP START TO DETECT</div>
-<div class="status s1" id="lvl">Ready</div>
+<div class="status s1" id="lvl">Waiting for mic...</div>
 <div class="grid">
-<div class="k"><b>LIVE</b><span id="cur">0 dB</span></div>
-<div class="k"><b>PEAK</b><span id="mx" style="color:#ff3d00">0 dB</span></div>
-<div class="k"><b>AVG</b><span id="av">0 dB</span></div>
+<div class="k"><b>NOW</b><span id="cur">0</span></div>
+<div class="k"><b>PEAK</b><span id="mx" style="color:#ff3d00">0</span></div>
+<div class="k"><b>AVG</b><span id="av">0</span></div>
 </div>
 </div>
-<div class="thermo"><div class="tube"><div class="fill" id="fill"></div><div class="marks"><span>120</span><span>100</span><span>80</span><span>60</span><span>40</span><span>20</span><span>0</span></div></div><div class="bulb"></div></div>
+
+<div class="thermo">
+<div class="tube"><div class="fill" id="fill"></div><div class="marks"><span>120</span><span>100</span><span>80</span><span>60</span><span>40</span><span>20</span><span>0</span></div></div>
+<div class="bulb"></div>
+</div>
 </div>
 
 <div class="detail-grid">
-<div class="d"><b>SUB-BASS</b><span id="sub">0%</span></div>
-<div class="d"><b>BASS</b><span id="bass">0%</span></div>
+<div class="d"><b>SUB-BASS (DHOL/DJ)</b><span id="sub">0%</span></div>
+<div class="d"><b>BASS (SPEAKER)</b><span id="bass">0%</span></div>
 <div class="d"><b>VOICE / CROWD</b><span id="mid">0%</span></div>
 <div class="d"><b>HORN / WHISTLE</b><span id="high">0%</span></div>
 </div>
@@ -66,17 +74,13 @@ canvas{width:100%;height:72px;background:#000;border-radius:14px;margin-top:12px
 <button class="btn start" id="btn">🎙️ START DETECTION</button>
 <button class="btn stop" id="resetBtn">RESET PEAK</button>
 
-<div class="footer">CREATED AND DEVELOPED BY PUNYA BINAY SWAIN<br>COPYRIGHT ©️ RESERVED 2026</div>
+<div class="footer">CREATED AND DEVELOPED BY PUNYA BINAY SWAIN<br>COPYRIGHT ©️ RESERVED • 2026 • ALL RIGHTS RESERVED<br>Jay Jagannath 🙏</div>
 </div>
 
 <script>
-let aCtx, analyser, stream, run=false, max=0, history=[], beatHistory=[];
-const bigEl=document.getElementById('big'), curEl=document.getElementById('cur'), mxEl=document.getElementById('mx'), avEl=document.getElementById('av');
-const srcEl=document.getElementById('src'), lvlEl=document.getElementById('lvl'), fillEl=document.getElementById('fill');
-const subEl=document.getElementById('sub'), bassEl=document.getElementById('bass'), midEl=document.getElementById('mid'), highEl=document.getElementById('high');
-const wave=document.getElementById('wave'), wCtx=wave.getContext('2d');
+let aCtx, analyser, stream, run=false, max=0, tot=0, cnt=0;
+let wave=document.getElementById('wave'), wCtx=wave.getContext('2d');
 const btn=document.getElementById('btn'), resetBtn=document.getElementById('resetBtn');
-
 function resize(){wave.width=wave.offsetWidth*2; wave.height=wave.offsetHeight*2}
 window.addEventListener('resize',resize); resize();
 
@@ -87,22 +91,17 @@ async function toggle(){
  if(run){stopM();return;}
  try{
   stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false,noiseSuppression:false,autoGainControl:false}});
-  aCtx=new (window.AudioContext || window.webkitAudioContext)();
+  aCtx=new(window.AudioContext||window.webkitAudioContext)();
   if(aCtx.state==='suspended') await aCtx.resume();
-  analyser=aCtx.createAnalyser(); analyser.fftSize=4096; analyser.smoothingTimeConstant=0.85;
+  analyser=aCtx.createAnalyser(); analyser.fftSize=4096; analyser.smoothingTimeConstant=0.15;
   aCtx.createMediaStreamSource(stream).connect(analyser);
-  run=true; max=0; history=[]; beatHistory=[];
+  run=true; max=0; tot=0; cnt=0;
   btn.innerText='⏹️ STOP TEST'; btn.className='btn stop';
   loop(); draw();
- }catch(e){alert('Mic Allow karo bhai - '+e.message); console.log(e);}
+ }catch(e){alert('Mic Allow karo bhai');}
 }
-function stopM(){
- run=false;
- if(stream)stream.getTracks().forEach(t=>t.stop());
- if(aCtx) aCtx.close();
- btn.innerText='🎙️ START DETECTION'; btn.className='btn start';
-}
-function resetM(){max=0; history=[]; beatHistory=[]; mxEl.innerText='0 dB';}
+function stopM(){run=false; if(stream)stream.getTracks().forEach(t=>t.stop()); if(aCtx)aCtx.close(); btn.innerText='🎙️ START DETECTION'; btn.className='btn start';}
+function resetM(){max=0; tot=0; cnt=0; document.getElementById('mx').innerText='0 dB'; document.getElementById('av').innerText='0 dB';}
 
 function loop(){
  if(!run) return;
@@ -123,50 +122,56 @@ function loop(){
  }
  let total=sub+bass+mid+high+1;
  let subP=Math.round(sub/total*100), bassP=Math.round(bass/total*100), midP=Math.round(mid/total*100), highP=Math.round(high/total*100);
- subEl.innerText=subP+'%'; bassEl.innerText=bassP+'%'; midEl.innerText=midP+'%'; highEl.innerText=highP+'%';
+ document.getElementById('sub').innerText=subP+'%';
+ document.getElementById('bass').innerText=bassP+'%';
+ document.getElementById('mid').innerText=midP+'%';
+ document.getElementById('high').innerText=highP+'%';
 
- let db = rms < 0.00001? 26 : 20*Math.log10(rms) + 94;
- db=Math.max(22,Math.min(120,db));
- history.push(db); if(history.length>30) history.shift();
- let stable = history.reduce((a,b)=>a+b,0)/history.length;
- let d=Math.round(stable);
- max=Math.max(max,d);
+ let db;
+ if(rms < 0.00001) db = 22 + Math.random()*4;
+ else { db = 20*Math.log10(rms) + 95; db=Math.max(20,Math.min(120,db)); }
+ let d=Math.round(db);
+ max=Math.max(max,d); tot+=d; cnt++;
 
- bigEl.innerText=d; curEl.innerText=d+' dB'; mxEl.innerText=max+' dB';
- avEl.innerText=Math.round(history.reduce((a,b)=>a+b,0)/history.length)+' dB';
- fillEl.style.height=(d/120*100)+'%';
+ document.getElementById('big').innerText=d;
+ document.getElementById('cur').innerText=d+' dB';
+ document.getElementById('mx').innerText=max+' dB';
+ document.getElementById('av').innerText=(cnt?Math.round(tot/cnt):0)+' dB';
+ document.getElementById('fill').style.height=(d/120*100)+'%';
 
- beatHistory.push(rms); if(beatHistory.length>35) beatHistory.shift();
- let avgB=beatHistory.reduce((a,b)=>a+b,0)/beatHistory.length;
- let variance=0; for(let v of beatHistory) variance+=Math.abs(v-avgB); variance/=beatHistory.length;
-
- if(subP>38 && variance>0.018 && d>87){
-   srcEl.innerText='🥁 DHOL / DJ SUB-BASS'; lvlEl.innerText='Dhol Beat - '+d+' dB'; lvlEl.className='status s4';
- } else if(bassP>35 && d>84){
-   srcEl.innerText='🔊 DJ SPEAKER BASS'; lvlEl.innerText='DJ Box - '+d+' dB'; lvlEl.className='status s4';
- } else if(midP>46 && d>79){
-   srcEl.innerText='🗣️ CROWD ROAR'; lvlEl.innerText='Bheed - '+d+' dB'; lvlEl.className='status s3';
- } else if(highP>32 && d>74){
-   srcEl.innerText='📯 HORN / WHISTLE'; lvlEl.innerText='Horn - '+d+' dB'; lvlEl.className='status s2';
+ let srcEl=document.getElementById('src'), lvlEl=document.getElementById('lvl');
+ if(subP>35 && d>88){
+   srcEl.innerText='🥁 DHOL / DJ SUB-BASS';
+   lvlEl.innerText='Full Dhol / Bass Box - '+d+' dB';
+   lvlEl.className='status s4';
+ } else if(bassP>35 && d>85){
+   srcEl.innerText='🔊 DJ SPEAKER BASS';
+   lvlEl.innerText='DJ Box Loud - '+d+' dB - Police Warning';
+   lvlEl.className='status s4';
+ } else if(midP>45 && d>82){
+   srcEl.innerText='🗣️ STADIUM CROWD ROAR';
+   lvlEl.innerText='Bheed Chillana - '+d+' dB';
+   lvlEl.className='status s3';
+ } else if(highP>30 && d>75){
+   srcEl.innerText='📯 HORN / WHISTLE / SEETI';
+   lvlEl.innerText='Horn / Seeti - '+d+' dB';
+   lvlEl.className='status s2';
  } else if(d>75){
-   srcEl.innerText='🎧 MIXED LOUD'; lvlEl.innerText='Mixed - '+d+' dB'; lvlEl.className='status s3';
- } else if(d>42){
-   srcEl.innerText='🎤 VOICE / MUSIC'; lvlEl.innerText='Normal - '+d+' dB'; lvlEl.className='status s2';
+   srcEl.innerText='🎧 MIXED LOUD - DJ + CROWD';
+   lvlEl.innerText='Mixed Loud Sound - '+d+' dB';
+   lvlEl.className='status s3';
+ } else if(d>45){
+   srcEl.innerText='🎤 VOICE / MUSIC';
+   lvlEl.innerText='Normal Music / Talk - '+d+' dB';
+   lvlEl.className='status s2';
  } else {
-   srcEl.innerText='🤫 QUIET ROOM'; lvlEl.innerText='Shant - '+d+' dB'; lvlEl.className='status s1';
+   srcEl.innerText='🤫 QUIET ROOM';
+   lvlEl.innerText='Shant Kamra - '+d+' dB';
+   lvlEl.className='status s1';
  }
  requestAnimationFrame(loop);
 }
-function draw(){
- if(!run){requestAnimationFrame(draw);return;}
- const data=new Uint8Array(analyser.fftSize);
- analyser.getByteTimeDomainData(data);
- wCtx.clearRect(0,0,wave.width,wave.height);
- wCtx.lineWidth=2.5; wCtx.strokeStyle='#ff3d00'; wCtx.beginPath();
- let slice=wave.width/data.length, x=0;
- for(let i=0;i<data.length;i++){let v=data[i]/128, y=v*wave.height/2; if(i==0)wCtx.moveTo(x,y); else wCtx.lineTo(x,y); x+=slice;}
- wCtx.stroke(); requestAnimationFrame(draw);
-}
+function draw(){ if(!run){requestAnimationFrame(draw);return;} const data=new Uint8Array(analyser.fftSize); analyser.getByteTimeDomainData(data); wCtx.clearRect(0,0,wave.width,wave.height); wCtx.lineWidth=2.5; wCtx.strokeStyle='#ff3d00'; wCtx.shadowColor='#ff3d00'; wCtx.shadowBlur=10; wCtx.beginPath(); let slice=wave.width/data.length, x=0; for(let i=0;i<data.length;i++){let v=data[i]/128, y=v*wave.height/2; if(i==0)wCtx.moveTo(x,y); else wCtx.lineTo(x,y); x+=slice;} wCtx.stroke(); wCtx.shadowBlur=0; requestAnimationFrame(draw);}
 </script>
 </body>
 </html>
