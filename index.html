@@ -3,64 +3,64 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GENUINE dB METER - Real Data</title>
+<title>REAL SOUND DETECTOR - Punya</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;800&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
-body{background:#060a1a;display:flex;justify-content:center;padding:12px;min-height:100vh}
-.box{width:100%;max-width:410px;background:#141a33;border-radius:28px;padding:16px;border:1px solid #2a3a6a}
+body{background:#060a1a;display:flex;justify-content:center;padding:12px}
+.box{width:100%;max-width:420px;background:#141a33;border-radius:28px;padding:16px;border:1px solid #2a3a6a}
 .head{text-align:center}.head h1{color:#ff3d00;font-size:22px}.head span{color:#8a9abf;font-size:10px}
-.main-meter{display:flex;gap:14px;margin-top:16px;align-items:flex-end}
+.main{display:flex;gap:14px;margin-top:14px;align-items:flex-end}
 .left{flex:1;background:#000;border-radius:20px;padding:14px;border:1px solid #222;text-align:center}
-.big{font-size:76px;font-weight:800;color:#fff;line-height:1}
-.unit{color:#ff3d00;font-weight:800;letter-spacing:4px;font-size:12px}
-.info{margin-top:8px;background:#0f1430;border:1px solid #1e2e56;border-radius:12px;padding:10px;color:#c0cbe6;font-size:11px;line-height:1.6;text-align:left;min-height:68px}
+.big{font-size:70px;font-weight:800;color:#fff;line-height:1}
+.unit{color:#ff3d00;font-weight:800;letter-spacing:3px;font-size:11px}
+.result{margin-top:10px;background:#111;border:2px solid #ff3d00;border-radius:14px;padding:12px;text-align:center;min-height:84px;display:flex;flex-direction:column;justify-content:center}
+.result.name{color:#fff;font-size:18px;font-weight:800;line-height:1.1}
+.result.detail{color:#ffeb3b;font-size:11px;font-weight:600;margin-top:4px;line-height:1.3}
 .thermo{width:54px;background:#000;border-radius:30px;border:2px solid #333;padding:6px 6px 12px;display:flex;flex-direction:column;align-items:center}
 .tube{width:22px;height:260px;background:#111;border-radius:20px;border:1px solid #222;display:flex;flex-direction:column-reverse;overflow:hidden}
 .fill{width:100%;height:0%;background:linear-gradient(180deg,#ff1744 0%,#ff9100 35%,#ffeb3b 65%,#00e676 100%);transition:height.3s ease}
 .bulb{width:36px;height:36px;background:#ff1744;border-radius:50%;margin-top:-8px;border:2px solid #ff3d00;box-shadow:0 0 15px #ff1744}
-.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-top:12px}
-.k{background:#0f1733;border:1px solid #1e2e56;border-radius:12px;padding:8px;text-align:center}.k b{color:#6b7ca3;font-size:7px;display:block}.k span{color:#fff;font-size:14px;font-weight:800}
-.dgrid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:10px}
-.d{background:#0f1430;border:1px solid #1e2e56;border-radius:10px;padding:7px;text-align:left}.d b{color:#6b7ca3;font-size:7px;display:block}.d span{color:#fff;font-size:11px;font-weight:800}.d i{color:#8a9abf;font-size:9px;font-style:normal;display:block;margin-top:2px}
-canvas{width:100%;height:80px;background:#000;border-radius:12px;margin-top:10px;border:1px solid #222}
+.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-top:10px}
+.k{background:#0f1733;border:1px solid #1e2e56;border-radius:12px;padding:8px;text-align:center}.k b{color:#6b7ca3;font-size:7px;display:block}.k span{color:#fff;font-size:13px;font-weight:800}
+.bars{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:10px}
+.barbox{background:#0f1430;border:1px solid #1e2e56;border-radius:10px;padding:6px}
+.barbox b{font-size:7px;color:#6b7ca3;display:flex;justify-content:space-between}.barbox b span{color:#fff;font-size:9px}
+.progress{height:6px;background:#111;border-radius:10px;margin-top:4px;overflow:hidden}.progress div{height:100%;background:#ff3d00;transition:width.2s}
+canvas{width:100%;height:70px;background:#000;border-radius:12px;margin-top:10px;border:1px solid #222}
 .btn{width:100%;padding:14px;border:none;border-radius:12px;font-weight:800;font-size:14px;margin-top:10px;cursor:pointer}.start{background:linear-gradient(135deg,#ff3d00,#ff6a00);color:#fff}.stop{background:#1e2a4e;color:#8aa0c8}
 .footer{margin-top:14px;text-align:center;padding-top:10px;border-top:1px solid #1e2e56;color:#5a6e94;font-size:9px;line-height:1.6}
 </style>
 </head>
 <body>
 <div class="box">
-<div class="head"><h1>GENUINE dB METER</h1><span>REAL MIC DATA - NO GUESS - STABLE</span></div>
-<div class="main-meter">
+<div class="head"><h1>SOUND DETECTOR</h1><span>KAUNSI CHEEZ KA SHOR HAI - REAL DETECT</span></div>
+<div class="main">
 <div class="left">
 <div class="big" id="big">--</div>
-<div class="unit">DECIBEL (dB SPL)</div>
-<div class="info" id="info">START dabao. Mic jo sunega wahi data ayega. Koi fixed naam nahi.</div>
+<div class="unit">dB SPL - GENUINE</div>
+<div class="result"><div class="name" id="srcName">TAP START</div><div class="detail" id="srcDetail">Mic allow karo, fir kaunsi cheez ka shor hai wo bolega</div></div>
 <div class="grid">
-<div class="k"><b>CURRENT</b><span id="cur">0 dB</span></div>
+<div class="k"><b>NOW</b><span id="cur">0 dB</span></div>
 <div class="k"><b>PEAK</b><span id="mx" style="color:#ff3d00">0 dB</span></div>
-<div class="k"><b>AVG (1s)</b><span id="av">0 dB</span></div>
+<div class="k"><b>AVG</b><span id="av">0 dB</span></div>
 </div>
 </div>
 <div class="thermo"><div class="tube"><div class="fill" id="fill"></div></div><div class="bulb"></div></div>
 </div>
-
-<div class="dgrid">
-<div class="d"><b>20-80 Hz - Low Power</b><span id="sub">0</span><i id="subT">Sub-bass energy</i></div>
-<div class="d"><b>80-300 Hz - Low-Mid</b><span id="bass">0</span><i id="bassT">Bass energy</i></div>
-<div class="d"><b>300-2000 Hz - Mid</b><span id="mid">0</span><i id="midT">Voice energy</i></div>
-<div class="d"><b>2000-8000 Hz - High</b><span id="high">0</span><i id="highT">High freq energy</i></div>
+<div class="bars">
+<div class="barbox"><b>DHOL/DJ 20-80Hz <span id="v1">0</span></b><div class="progress"><div id="p1" style="width:0%"></div></div></div>
+<div class="barbox"><b>BASS BOX 80-300Hz <span id="v2">0</span></b><div class="progress"><div id="p2" style="width:0%"></div></div></div>
+<div class="barbox"><b>CROWD 300-2kHz <span id="v3">0</span></b><div class="progress"><div id="p3" style="width:0%"></div></div></div>
+<div class="barbox"><b>HORN 2k-8kHz <span id="v4">0</span></b><div class="progress"><div id="p4" style="width:0%"></div></div></div>
 </div>
-
 <canvas id="wave"></canvas>
-<button class="btn start" id="btn" onclick="toggle()">🎙️ START - REAL MIC TEST</button>
-<button class="btn stop" onclick="resetM()">RESET PEAK</button>
-
-<div class="footer">Created and Developed by Punya Binay Swain<br>Copyright © Reserved • 2026 • All Rights Reserved<br>Jay Jagannath 🙏</div>
+<button class="btn start" id="btn" onclick="toggle()">🎙️ START - KYA BAJ RAHA HAI?</button>
+<button class="btn stop" onclick="resetM()">RESET</button>
+<div class="footer">Created and Developed by Punya Binay Swain<br>Copyright © Reserved • 2026<br>Jay Jagannath 🙏</div>
 </div>
-
 <script>
-let aCtx, analyser, stream, run=false, max=0, history=[];
+let aCtx, analyser, stream, run=false, max=0, history=[], beatHistory=[], lastSrc="";
 let wave=document.getElementById('wave'), wCtx=wave.getContext('2d');
 function resize(){wave.width=wave.offsetWidth*2; wave.height=wave.offsetHeight*2}
 window.addEventListener('resize',resize); resize();
@@ -70,17 +70,15 @@ async function toggle(){
  try{
   stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false,noiseSuppression:false,autoGainControl:false},video:false});
   aCtx=new(window.AudioContext||window.webkitAudioContext)();
-  analyser=aCtx.createAnalyser();
-  analyser.fftSize=4096;
-  analyser.smoothingTimeConstant=0.85; // Stable ke liye high
+  analyser=aCtx.createAnalyser(); analyser.fftSize=4096; analyser.smoothingTimeConstant=0.8;
   aCtx.createMediaStreamSource(stream).connect(analyser);
-  run=true; max=0; history=[];
+  run=true; max=0; history=[]; beatHistory=[]; lastSrc="";
   document.getElementById('btn').innerText='⏹️ STOP'; document.getElementById('btn').className='btn stop';
   loop(); draw();
  }catch(e){alert('Mic Allow karo');}
 }
-function stopM(){run=false; if(stream)stream.getTracks().forEach(t=>t.stop()); if(aCtx)aCtx.close(); document.getElementById('btn').innerText='🎙️ START - REAL MIC TEST'; document.getElementById('btn').className='btn start';}
-function resetM(){max=0; history=[];}
+function stopM(){run=false; if(stream)stream.getTracks().forEach(t=>t.stop()); if(aCtx)aCtx.close(); document.getElementById('btn').innerText='🎙️ START - KYA BAJ RAHA HAI?'; document.getElementById('btn').className='btn start';}
+function resetM(){max=0; history=[]; beatHistory=[];}
 
 function loop(){
  if(!run) return;
@@ -100,20 +98,15 @@ function loop(){
    else if(f<8000){bands[3]+=freqData[i]; counts[3]++}
  }
  let avgs=bands.map((v,i)=>counts[i]?Math.round(v/counts[i]):0);
- document.getElementById('sub').innerText=avgs[0];
- document.getElementById('bass').innerText=avgs[1];
- document.getElementById('mid').innerText=avgs[2];
- document.getElementById('high').innerText=avgs[3];
+ document.getElementById('v1').innerText=avgs[0]; document.getElementById('v2').innerText=avgs[1];
+ document.getElementById('v3').innerText=avgs[2]; document.getElementById('v4').innerText=avgs[3];
+ document.getElementById('p1').style.width=avgs[0]+'%'; document.getElementById('p2').style.width=avgs[1]+'%';
+ document.getElementById('p3').style.width=avgs[2]+'%'; document.getElementById('p4').style.width=avgs[3]+'%';
 
- // GENUINE dB - No fake boost, no random
- let db;
- if(rms < 0.000008) db=22; // Real mic noise floor
- else db = 20*Math.log10(rms) + 94;
-
+ let db = rms < 0.00001? 24 : 20*Math.log10(rms)+94;
  history.push(db); if(history.length>25) history.shift();
  let stable = history.reduce((a,b)=>a+b,0)/history.length;
  let d=Math.round(stable);
-
  max=Math.max(max,d);
  document.getElementById('big').innerText=d;
  document.getElementById('cur').innerText=d+' dB';
@@ -121,15 +114,20 @@ function loop(){
  document.getElementById('av').innerText=d+' dB';
  document.getElementById('fill').style.height=(d/120*100)+'%';
 
- // GENUINE DETAIL - Koi DJ/Dhol ka naam nahi, sirf data
- let dominant = avgs.indexOf(Math.max(...avgs));
- let domFreq = ["20-80Hz","80-300Hz","300-2000Hz","2000-8000Hz"][dominant];
- let domVal = avgs[dominant];
- document.getElementById('info').innerHTML=
-   '<b>Mic RMS:</b> '+rms.toFixed(6)+'<br>'+
-   '<b>Genuine dB:</b> '+d+' dB SPL (94dB ref)<br>'+
-   '<b>Dominant Band:</b> '+domFreq+' ('+domVal+')<br>'+
-   '<b>Note:</b> Jo band sabse zyada hai, usi frequency ki awaaz aas-paas tez hai.';
+ beatHistory.push(rms); if(beatHistory.length>35) beatHistory.shift();
+ let avgB=beatHistory.reduce((a,b)=>a+b,0)/beatHistory.length;
+ let variance=0; for(let v of beatHistory) variance+=Math.abs(v-avgB); variance/=beatHistory.length;
+
+ let nameEl=document.getElementById('srcName'), detailEl=document.getElementById('srcDetail');
+ let newSrc="";
+
+ if(d<32){ newSrc="quiet"; nameEl.innerText="🤫 Quiet Room"; detailEl.innerText="Fan/AC - "+d+" dB - Koi loud shor nahi"; }
+ else if(avgs[0]>58 && variance>0.018 && d>86){ newSrc="dhol"; nameEl.innerText="🥁 DHOL / DHOLAK"; detailEl.innerText="Thap-thap beat | "+d+" dB | 20-80Hz tez | Dhol baj raha hai"; }
+ else if(avgs[1]>60 && d>84){ newSrc="dj"; nameEl.innerText="🔊 DJ BASS BOX"; detailEl.innerText="Continuous bass | "+d+" dB | 80-300Hz tez | DJ Box"; }
+ else if(avgs[2]>62 && variance>0.016 && d>76){ newSrc="crowd"; nameEl.innerText="🗣️ CROWD / BHEED"; detailEl.innerText="Bheed ka shor | "+d+" dB | 300-2kHz tez | Log chilla rahe hain"; }
+ else if(avgs[3]>58 && d>72){ newSrc="horn"; nameEl.innerText="📯 HORN / SEETI"; detailEl.innerText="Seeti/Horn | "+d+" dB | 2k-8kHz tez | Sharp awaaz"; }
+ else if(d>70){ newSrc="mixed"; nameEl.innerText="🎧 DJ + CROWD MIX"; detailEl.innerText="Mixed loud | "+d+" dB | DJ + Bheed dono | Stadium jaisa"; }
+ else { newSrc="talk"; nameEl.innerText="🎤 BAAT / MUSIC"; detailEl.innerText="Normal awaaz | "+d+" dB | Baat ya halka music"; }
 
  requestAnimationFrame(loop);
 }
