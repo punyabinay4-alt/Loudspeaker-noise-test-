@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GENUINE NOISE DECIBEL METER - By SP</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+body{background:#050a14;min-height:100vh;padding:15px;position:relative;overflow-x:hidden}
+.bg-globe{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-3;background:radial-gradient(ellipse at center, #0a1930 0%, #02060f 70%), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1920') no-repeat center; background-size:cover; filter:brightness(0.4)}
+.bg-grid{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-2;background-image:linear-gradient(rgba(255,107,0,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(0,102,255,0.07) 1px, transparent 1px); background-size:50px 50px}
+.container{max-width:650px;margin:0 auto;background:rgba(255,255,255,0.98);border-radius:20px;padding:28px;box-shadow:0 20px 60px rgba(0,0,0,0.5);border:1px solid rgba(255,107,0,0.2)}
+.header{text-align:center;margin-bottom:20px}
+.title{font-size:22px;font-weight:800;color:#ff6b00;line-height:1.2}
+.tagline{font-size:11px;color:#003366;font-weight:700;margin-top:6px;background:rgba(255,107,0,0.1);display:inline-block;padding:4px 12px;border-radius:20px}
+.meter-wrap{text-align:center;margin:25px 0}
+.meter{width:280px;height:140px;margin:0 auto;position:relative;background:conic-gradient(from 180deg, #00c851 0deg, #ffbb33 60deg, #ff6b00 120deg, #ff0000 180deg, #ddd 180deg);border-radius:280px 280px 0 0;box-shadow:inset 0 -5px 15px rgba(0,0,0,0.2)}
+.meter-inner{width:240px;height:120px;background:#fff;border-radius:240px 240px 0 0;position:absolute;bottom:0;left:20px}
+.needle{width:4px;height:110px;background:linear-gradient(to top, #ff0000, #333);position:absolute;bottom:0;left:50%;transform-origin:bottom center;transform:translateX(-50%) rotate(-90deg);transition:transform 0.15s ease-out;border-radius:4px;z-index:2}
+.db-value{font-size:56px;font-weight:800;color:#003366;margin-top:10px;line-height:1}
+.db-unit{font-size:13px;color:#777;font-weight:600}
+.status-box{margin:15px auto;padding:10px 15px;border-radius:12px;font-weight:700;font-size:13px;max-width:300px;transition:0.3s}
+.s-quiet{background:#e8f5e9;color:#2e7d32;border:1px solid #a5d6a7}
+.s-normal{background:#e3f2fd;color:#1565c0;border:1px solid #90caf9}
+.s-loud{background:#fff3e0;color:#ef6c00;border:1px solid #ffcc80}
+.s-danger{background:#ffebee;color:#c62828;border:1px solid #ef9a9a;animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.03)}}
+.results{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:20px 0}
+.card{background:linear-gradient(135deg, #fff 0%, #fff7f0 100%);border:1.5px solid #ffd0a3;border-radius:14px;padding:14px;text-align:center}
+.card.val{font-size:20px;font-weight:800;color:#003366}
+.card.label{font-size:10px;color:#666;font-weight:600;margin-top:2px;text-transform:uppercase}
+.btn-group{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:15px}
+.btn{background:linear-gradient(135deg, #ff6b00, #003366);color:#fff;border:none;padding:14px;border-radius:12px;font-weight:700;font-size:14px;cursor:pointer}
+.btn-secondary{background:#eef2f7;color:#003366}
+.btn:disabled{opacity:0.5}
+.visualizer{width:100%;height:80px;background:#0a1930;border-radius:12px;margin-top:18px;overflow:hidden;position:relative}
+canvas{width:100%;height:100%}
+.info{background:#f8f9ff;border:1px solid #e0e6ff;border-radius:14px;padding:14px;margin-top:18px;font-size:11px;color:#444;line-height:1.6}
+.footer{text-align:center;font-size:11px;color:#777;margin-top:18px;font-weight:600}
+</style>
+</head>
+<body>
+<div class="bg-globe"></div><div class="bg-grid"></div>
+<div class="container">
+  <div class="header">
+    <div class="title">GENUINE NOISE DECIBEL METER</div>
+    <div class="tagline">Original Phone Mic Check - Bharat Ka Apna dB Meter</div>
+  </div>
+
+  <div class="meter-wrap">
+    <div class="meter"><div class="meter-inner"></div><div class="needle" id="needle"></div></div>
+    <div class="db-value" id="dbValue">--</div>
+    <div class="db-unit">Decibel (dB)</div>
+    <div class="status-box s-normal" id="statusBox">Tap START to check surrounding noise</div>
+  </div>
+
+  <div class="results">
+    <div class="card"><div class="val" id="currentDb">0</div><div class="label">Current dB</div></div>
+    <div class="card"><div class="val" id="maxDb">0</div><div class="label">Max dB</div></div>
+    <div class="card"><div class="val" id="avgDb">0</div><div class="label">Avg dB</div></div>
+  </div>
+
+  <div class="visualizer"><canvas id="waveCanvas"></canvas></div>
+
+  <div class="btn-group">
+    <button class="btn" id="startBtn" onclick="startMeter()">START MIC TEST</button>
+    <button class="btn btn-secondary" onclick="stopMeter()">STOP / RESET</button>
+  </div>
+
+  <div class="info">
+    <b>Note:</b> 0-30 dB = Very Quiet (Library), 30-50 dB = Quiet Room, 50-70 dB = Normal (Talk), 70-85 dB = Loud (Traffic), 85+ dB = Dangerous (Use Ear Protection). <br><br>
+    <b>For Best Result:</b> Mobile pe Chrome me open karo aur mic permission Allow karo. Laptop pe exact nahi ayega.
+  </div>
+
+  <div class="footer">CREATED BY PUNYA BINAY SWAIN © 2026 | JAY JAGANNATH</div>
+</div>
+
+<script>
+let audioContext, analyser, microphone, dataArray, rafId;
+let isRunning = false;
+let maxDb = 0, minDb = 200, totalDb = 0, count = 0;
+
+const needle = document.getElementById('needle');
+const dbValue = document.getElementById('dbValue');
+const statusBox = document.getElementById('statusBox');
+const canvas = document.getElementById('waveCanvas');
+const ctx = canvas.getContext('2d');
+
+function updateNeedle(db){
+  let clamped = Math.max(0, Math.min(120, db));
+  let deg = (clamped / 120 * 180) - 90;
+  needle.style.transform = `translateX(-50%) rotate(${deg}deg)`;
+}
+
+function updateStatus(db){
+  let text = '', cls = '';
+  if(db < 30){ text = '🤫 Very Quiet - Library jaisa'; cls = 's-quiet'; }
+  else if(db < 55){ text = '😊 Normal - Quiet Room'; cls = 's-normal'; }
+  else if(db < 75){ text = '🔊 Loud - Traffic / Bheed'; cls = 's-loud'; }
+  else { text = '⚠️ DANGEROUS - Kaan ko nuksan ho sakta hai!'; cls = 's-danger'; }
+  statusBox.innerText = text + ` (${Math.round(db)} dB)`;
+  statusBox.className = 'status-box ' + cls;
+}
+
+async function startMeter(){
+  if(isRunning) return;
+  try{
+    const stream = await navigator.mediaDevices.getUserMedia({audio:true, video:false});
+    audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    analyser = audioContext.createAnalyser();
+    analyser.fftSize = 2048;
+    microphone = audioContext.createMediaStreamSource(stream);
+    microphone.connect(analyser);
+    dataArray = new Uint8Array(analyser.frequencyBinCount);
+
+    isRunning = true;
+    maxDb = 0; minDb = 200; totalDb = 0; count = 0;
+    document.getElementById('startBtn').disabled = true;
+    document.getElementById('startBtn').innerText = 'Listening...';
+
+    measure();
+    drawWave();
+  }catch(e){
+    alert('Mic permission dena padega! Settings > Allow Microphone');
+    console.error(e);
+  }
+}
+
+function measure(){
+  if(!isRunning) return;
+  analyser.getByteFrequencyData(dataArray);
+
+  let sum = 0;
+  for(let i=0;i<dataArray.length;i++){ sum += dataArray[i]*dataArray[i]; }
+  let rms = Math.sqrt(sum / dataArray.length);
+
+  // Convert to dB - Real formula with calibration offset
+  // 0-255 to dB mapping (approx real world SPL)
+  let db = 20 * Math.log10(rms / 255) + 100;
+  if(!isFinite(db) || db < 0) db = 0;
+  if(rms < 2) db = 0; // Silence
+
+  // Smoothing
+  db = Math.round(db);
+
+  maxDb = Math.max(maxDb, db);
+  minDb = Math.min(minDb, db);
+  totalDb += db; count++;
+  let avg = Math.round(totalDb / count);
+
+  document.getElementById('currentDb').innerText = db;
+  document.getElementById('maxDb').innerText = maxDb;
+  document.getElementById('avgDb').innerText = avg;
+  dbValue.innerText = db;
+
+  updateNeedle(db);
+  updateStatus(db);
+
+  rafId = requestAnimationFrame(measure);
+}
+
+function drawWave(){
+  if(!isRunning) return;
+  analyser.getByteTimeDomainData(dataArray);
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.lineWidth = 2;
+  ctx.strokeStyle = '#ff6b00';
+  ctx.beginPath();
+  let sliceWidth = canvas.width / dataArray.length;
+  let x = 0;
+  for(let i=0;i<dataArray.length;i++){
+    let v = dataArray[i] / 128.0;
+    let y = v * canvas.height / 2;
+    if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+    x += sliceWidth;
+  }
+  ctx.stroke();
+  requestAnimationFrame(drawWave);
+}
+
+function stopMeter(){
+  isRunning = false;
+  if(rafId) cancelAnimationFrame(rafId);
+  if(audioContext) audioContext.close();
+  document.getElementById('startBtn').disabled = false;
+  document.getElementById('startBtn').innerText = 'START MIC TEST';
+  dbValue.innerText = '--';
+  updateNeedle(0);
+  statusBox.innerText = 'Tap START to check surrounding noise';
+  statusBox.className = 'status-box s-normal';
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+}
+
+// Resize canvas
+function resize(){ canvas.width = canvas.offsetWidth * 2; canvas.height = canvas.offsetHeight * 2; }
+window.addEventListener('resize', resize); resize();
+</script>
+</body>
+</html>
