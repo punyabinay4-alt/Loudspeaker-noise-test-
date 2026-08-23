@@ -3,64 +3,91 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>REAL SOUND DETECTOR - Punya</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;800&display=swap" rel="stylesheet">
+<title>POLICE SOUND INTELLIGENCE - Punya</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
-body{background:#060a1a;display:flex;justify-content:center;padding:12px}
-.box{width:100%;max-width:420px;background:#141a33;border-radius:28px;padding:16px;border:1px solid #2a3a6a}
-.head{text-align:center}.head h1{color:#ff3d00;font-size:22px}.head span{color:#8a9abf;font-size:10px}
-.main{display:flex;gap:14px;margin-top:14px;align-items:flex-end}
-.left{flex:1;background:#000;border-radius:20px;padding:14px;border:1px solid #222;text-align:center}
-.big{font-size:70px;font-weight:800;color:#fff;line-height:1}
-.unit{color:#ff3d00;font-weight:800;letter-spacing:3px;font-size:11px}
-.result{margin-top:10px;background:#111;border:2px solid #ff3d00;border-radius:14px;padding:12px;text-align:center;min-height:84px;display:flex;flex-direction:column;justify-content:center}
-.result.name{color:#fff;font-size:18px;font-weight:800;line-height:1.1}
-.result.detail{color:#ffeb3b;font-size:11px;font-weight:600;margin-top:4px;line-height:1.3}
-.thermo{width:54px;background:#000;border-radius:30px;border:2px solid #333;padding:6px 6px 12px;display:flex;flex-direction:column;align-items:center}
-.tube{width:22px;height:260px;background:#111;border-radius:20px;border:1px solid #222;display:flex;flex-direction:column-reverse;overflow:hidden}
-.fill{width:100%;height:0%;background:linear-gradient(180deg,#ff1744 0%,#ff9100 35%,#ffeb3b 65%,#00e676 100%);transition:height.3s ease}
-.bulb{width:36px;height:36px;background:#ff1744;border-radius:50%;margin-top:-8px;border:2px solid #ff3d00;box-shadow:0 0 15px #ff1744}
-.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-top:10px}
-.k{background:#0f1733;border:1px solid #1e2e56;border-radius:12px;padding:8px;text-align:center}.k b{color:#6b7ca3;font-size:7px;display:block}.k span{color:#fff;font-size:13px;font-weight:800}
-.bars{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:10px}
-.barbox{background:#0f1430;border:1px solid #1e2e56;border-radius:10px;padding:6px}
-.barbox b{font-size:7px;color:#6b7ca3;display:flex;justify-content:space-between}.barbox b span{color:#fff;font-size:9px}
-.progress{height:6px;background:#111;border-radius:10px;margin-top:4px;overflow:hidden}.progress div{height:100%;background:#ff3d00;transition:width.2s}
-canvas{width:100%;height:70px;background:#000;border-radius:12px;margin-top:10px;border:1px solid #222}
-.btn{width:100%;padding:14px;border:none;border-radius:12px;font-weight:800;font-size:14px;margin-top:10px;cursor:pointer}.start{background:linear-gradient(135deg,#ff3d00,#ff6a00);color:#fff}.stop{background:#1e2a4e;color:#8aa0c8}
-.footer{margin-top:14px;text-align:center;padding-top:10px;border-top:1px solid #1e2e56;color:#5a6e94;font-size:9px;line-height:1.6}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#020510;display:flex;justify-content:center;padding:14px;min-height:100vh;font-family:'Poppins',sans-serif}
+.box{width:100%;max-width:420px;background:radial-gradient(circle at top, #1b2550 0%, #0a1028 60%);border-radius:32px;padding:18px;border:1px solid #2a3d7a;box-shadow:0 30px 80px rgba(0,0,0,.8), inset 0 1px 1px rgba(255,255,255,.1)}
+.header{display:flex;justify-content:space-between;align-items:center}
+.header.logo{font-family:'Orbitron',sans-serif;color:#ff3d00;font-weight:900;font-size:18px;letter-spacing:1px}
+.header.live{display:flex;align-items:center;gap:6px;background:#000;border:1px solid #222;border-radius:20px;padding:4px 10px;font-size:9px;color:#00ff88;font-weight:700}.live dot{width:8px;height:8px;background:#00ff88;border-radius:50%;box-shadow:0 0 10px #00ff88;animation:blink 1s infinite}
+@keyframes blink{50%{opacity:.3}}
+.hero{display:flex;gap:14px;margin-top:18px}
+.dbCard{flex:1;background:linear-gradient(180deg, #000 0%, #0a0a0a 100%);border-radius:24px;border:1px solid #222;padding:14px;text-align:center;position:relative;overflow:hidden}
+.dbCard::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg, #ff3d00, #ff8c00)}
+.big{font-family:'Orbitron',sans-serif;font-size:72px;font-weight:900;color:#fff;line-height:1;letter-spacing:-2px}
+.unit{font-family:'Orbitron',sans-serif;color:#ff3d00;font-size:10px;letter-spacing:4px;margin-top:4px;font-weight:700}
+.sourceBox{margin-top:12px;background:linear-gradient(135deg, #161d3f 0%, #0f1430 100%);border:1px solid #2a3d7a;border-left:4px solid #ff3d00;border-radius:16px;padding:12px;text-align:left;min-height:88px}
+.sourceBox b{color:#6b7ca3;font-size:8px;letter-spacing:1.5px;display:block}
+.sourceBox.name{color:#fff;font-size:17px;font-weight:800;margin-top:4px;line-height:1.1}
+.sourceBox.detail{color:#ffeb3b;font-size:11px;font-weight:500;margin-top:4px;line-height:1.4}
+.thermo{width:62px;background:linear-gradient(180deg, #000, #111);border-radius:30px;border:1px solid #333;padding:8px 8px 14px;display:flex;flex-direction:column;align-items:center}
+.tube{width:26px;height:260px;background:#0a0a0a;border-radius:20px;border:1px solid #222;position:relative;overflow:hidden;display:flex;flex-direction:column-reverse}
+.fill{width:100%;height:0%;background:linear-gradient(180deg,#ff1744 0%,#ff9100 30%,#ffeb3b 60%,#00e676 100%);box-shadow:0 0 15px rgba(255,61,0,.6);transition:height.4s cubic-bezier(.2,.8,.2,1);border-radius:20px}
+.scale{position:absolute;right: -18px;top:0;height:100%;display:flex;flex-direction:column;justify-content:space-between;font-size:7px;color:#555;font-weight:700}
+.bulb{width:38px;height:38px;background:radial-gradient(circle, #ff3d00, #b71c1c);border-radius:50%;margin-top:-10px;border:2px solid #ff3d00;box-shadow:0 0 20px #ff3d00}
+.stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px}
+.stat{background:#0f1733;border:1px solid #1e2e56;border-radius:14px;padding:10px;text-align:center}
+.stat b{color:#6b7ca3;font-size:7px;letter-spacing:1px;display:block}.stat span{color:#fff;font-family:'Orbitron',sans-serif;font-size:14px;font-weight:700;margin-top:2px;display:block}
+.analyzer{margin-top:12px;background:#000;border-radius:18px;border:1px solid #222;padding:10px}
+.analyzer b{color:#6b7ca3;font-size:8px;letter-spacing:1px}
+.barRow{display:flex;align-items:center;gap:8px;margin-top:6px}
+.barRow label{width:70px;font-size:8px;color:#8a9abf;font-weight:700}
+.barBg{flex:1;height:8px;background:#111;border-radius:10px;overflow:hidden;border:1px solid #222}
+.barFill{height:100%;width:0%;background:linear-gradient(90deg, #ff3d00, #ff8c00);transition:width.3s}
+.barVal{width:28px;font-size:10px;color:#fff;font-weight:800;text-align:right}
+canvas{width:100%;height:60px;margin-top:8px;border-radius:10px;background:#05070f}
+.btn{width:100%;padding:15px;border:none;border-radius:14px;font-weight:800;font-size:14px;margin-top:12px;cursor:pointer;letter-spacing:.5px;transition:.2s}
+.start{background:linear-gradient(135deg,#ff3d00,#ff6a00);color:#fff;box-shadow:0 10px 20px rgba(255,61,0,.3)}.stop{background:#1e2a4e;color:#8aa0c8}
+.footer{margin-top:16px;text-align:center;padding-top:12px;border-top:1px solid #1e2e56;color:#5a6e94;font-size:9px;line-height:1.6;letter-spacing:.5px}
 </style>
 </head>
 <body>
 <div class="box">
-<div class="head"><h1>SOUND DETECTOR</h1><span>KAUNSI CHEEZ KA SHOR HAI - REAL DETECT</span></div>
-<div class="main">
-<div class="left">
+<div class="header"><div class="logo">POLICE SI-01</div><div class="live"><dot></dot> REAL-TIME SCAN</div></div>
+
+<div class="hero">
+<div class="dbCard">
 <div class="big" id="big">--</div>
-<div class="unit">dB SPL - GENUINE</div>
-<div class="result"><div class="name" id="srcName">TAP START</div><div class="detail" id="srcDetail">Mic allow karo, fir kaunsi cheez ka shor hai wo bolega</div></div>
-<div class="grid">
-<div class="k"><b>NOW</b><span id="cur">0 dB</span></div>
-<div class="k"><b>PEAK</b><span id="mx" style="color:#ff3d00">0 dB</span></div>
-<div class="k"><b>AVG</b><span id="av">0 dB</span></div>
+<div class="unit">DECIBEL SPL</div>
+<div class="sourceBox">
+<b>AI SOURCE DETECTION</b>
+<div class="name" id="srcName">TAP TO SCAN</div>
+<div class="detail" id="srcDetail">Mic se real sound analyze hoga. Kaunsi cheez ka shor hai, kitna loud hai, sab genuine.</div>
+</div>
+<div class="stats">
+<div class="stat"><b>LIVE</b><span id="cur">0 dB</span></div>
+<div class="stat"><b>PEAK</b><span id="mx" style="color:#ff3d00">0 dB</span></div>
+<div class="stat"><b>AVG</b><span id="av">0 dB</span></div>
 </div>
 </div>
-<div class="thermo"><div class="tube"><div class="fill" id="fill"></div></div><div class="bulb"></div></div>
+<div class="thermo">
+<div class="tube">
+<div class="fill" id="fill"></div>
+<div class="scale"><span>120</span><span>100</span><span>80</span><span>60</span><span>40</span><span>20</span></div>
 </div>
-<div class="bars">
-<div class="barbox"><b>DHOL/DJ 20-80Hz <span id="v1">0</span></b><div class="progress"><div id="p1" style="width:0%"></div></div></div>
-<div class="barbox"><b>BASS BOX 80-300Hz <span id="v2">0</span></b><div class="progress"><div id="p2" style="width:0%"></div></div></div>
-<div class="barbox"><b>CROWD 300-2kHz <span id="v3">0</span></b><div class="progress"><div id="p3" style="width:0%"></div></div></div>
-<div class="barbox"><b>HORN 2k-8kHz <span id="v4">0</span></b><div class="progress"><div id="p4" style="width:0%"></div></div></div>
+<div class="bulb"></div>
 </div>
+</div>
+
+<div class="analyzer">
+<b>FREQUENCY SIGNATURE - REAL DATA</b>
+<div class="barRow"><label>SUB 20-80Hz</label><div class="barBg"><div class="barFill" id="b1"></div></div><div class="barVal" id="v1">0</div></div>
+<div class="barRow"><label>BASS 80-300</label><div class="barBg"><div class="barFill" id="b2"></div></div><div class="barVal" id="v2">0</div></div>
+<div class="barRow"><label>CROWD 0.3-2k</label><div class="barBg"><div class="barFill" id="b3"></div></div><div class="barVal" id="v3">0</div></div>
+<div class="barRow"><label>HORN 2k-8k</label><div class="barBg"><div class="barFill" id="b4"></div></div><div class="barVal" id="v4">0</div></div>
 <canvas id="wave"></canvas>
-<button class="btn start" id="btn" onclick="toggle()">🎙️ START - KYA BAJ RAHA HAI?</button>
-<button class="btn stop" onclick="resetM()">RESET</button>
-<div class="footer">Created and Developed by Punya Binay Swain<br>Copyright © Reserved • 2026<br>Jay Jagannath 🙏</div>
 </div>
+
+<button class="btn start" id="btn" onclick="toggle()">🎙️ START REAL SCAN</button>
+<button class="btn stop" onclick="resetM()">RESET PEAK</button>
+
+<div class="footer">Created and Developed by Punya Binay Swain<br>Copyright © Reserved • 2026 • All Rights Reserved<br>Jay Jagannath 🙏 • Police Grade Meter</div>
+</div>
+
 <script>
-let aCtx, analyser, stream, run=false, max=0, history=[], beatHistory=[], lastSrc="";
+let aCtx, analyser, stream, run=false, max=0, history=[], beatHistory=[];
 let wave=document.getElementById('wave'), wCtx=wave.getContext('2d');
 function resize(){wave.width=wave.offsetWidth*2; wave.height=wave.offsetHeight*2}
 window.addEventListener('resize',resize); resize();
@@ -70,15 +97,15 @@ async function toggle(){
  try{
   stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false,noiseSuppression:false,autoGainControl:false},video:false});
   aCtx=new(window.AudioContext||window.webkitAudioContext)();
-  analyser=aCtx.createAnalyser(); analyser.fftSize=4096; analyser.smoothingTimeConstant=0.8;
+  analyser=aCtx.createAnalyser(); analyser.fftSize=4096; analyser.smoothingTimeConstant=0.82;
   aCtx.createMediaStreamSource(stream).connect(analyser);
-  run=true; max=0; history=[]; beatHistory=[]; lastSrc="";
-  document.getElementById('btn').innerText='⏹️ STOP'; document.getElementById('btn').className='btn stop';
+  run=true; max=0; history=[]; beatHistory=[];
+  document.getElementById('btn').innerText='⏹️ STOP SCAN'; document.getElementById('btn').className='btn stop';
   loop(); draw();
- }catch(e){alert('Mic Allow karo');}
+ }catch(e){alert('Mic Allow karo bhai');}
 }
-function stopM(){run=false; if(stream)stream.getTracks().forEach(t=>t.stop()); if(aCtx)aCtx.close(); document.getElementById('btn').innerText='🎙️ START - KYA BAJ RAHA HAI?'; document.getElementById('btn').className='btn start';}
-function resetM(){max=0; history=[]; beatHistory=[];}
+function stopM(){run=false; if(stream)stream.getTracks().forEach(t=>t.stop()); if(aCtx)aCtx.close(); document.getElementById('btn').innerText='🎙️ START REAL SCAN'; document.getElementById('btn').className='btn start';}
+function resetM(){max=0; history=[];}
 
 function loop(){
  if(!run) return;
@@ -100,11 +127,11 @@ function loop(){
  let avgs=bands.map((v,i)=>counts[i]?Math.round(v/counts[i]):0);
  document.getElementById('v1').innerText=avgs[0]; document.getElementById('v2').innerText=avgs[1];
  document.getElementById('v3').innerText=avgs[2]; document.getElementById('v4').innerText=avgs[3];
- document.getElementById('p1').style.width=avgs[0]+'%'; document.getElementById('p2').style.width=avgs[1]+'%';
- document.getElementById('p3').style.width=avgs[2]+'%'; document.getElementById('p4').style.width=avgs[3]+'%';
+ document.getElementById('b1').style.width=avgs[0]+'%'; document.getElementById('b2').style.width=avgs[1]+'%';
+ document.getElementById('b3').style.width=avgs[2]+'%'; document.getElementById('b4').style.width=avgs[3]+'%';
 
- let db = rms < 0.00001? 24 : 20*Math.log10(rms)+94;
- history.push(db); if(history.length>25) history.shift();
+ let db = rms < 0.00001? 25 : 20*Math.log10(rms)+94;
+ history.push(db); if(history.length>30) history.shift();
  let stable = history.reduce((a,b)=>a+b,0)/history.length;
  let d=Math.round(stable);
  max=Math.max(max,d);
@@ -114,24 +141,38 @@ function loop(){
  document.getElementById('av').innerText=d+' dB';
  document.getElementById('fill').style.height=(d/120*100)+'%';
 
- beatHistory.push(rms); if(beatHistory.length>35) beatHistory.shift();
+ beatHistory.push(rms); if(beatHistory.length>40) beatHistory.shift();
  let avgB=beatHistory.reduce((a,b)=>a+b,0)/beatHistory.length;
  let variance=0; for(let v of beatHistory) variance+=Math.abs(v-avgB); variance/=beatHistory.length;
 
  let nameEl=document.getElementById('srcName'), detailEl=document.getElementById('srcDetail');
- let newSrc="";
 
- if(d<32){ newSrc="quiet"; nameEl.innerText="🤫 Quiet Room"; detailEl.innerText="Fan/AC - "+d+" dB - Koi loud shor nahi"; }
- else if(avgs[0]>58 && variance>0.018 && d>86){ newSrc="dhol"; nameEl.innerText="🥁 DHOL / DHOLAK"; detailEl.innerText="Thap-thap beat | "+d+" dB | 20-80Hz tez | Dhol baj raha hai"; }
- else if(avgs[1]>60 && d>84){ newSrc="dj"; nameEl.innerText="🔊 DJ BASS BOX"; detailEl.innerText="Continuous bass | "+d+" dB | 80-300Hz tez | DJ Box"; }
- else if(avgs[2]>62 && variance>0.016 && d>76){ newSrc="crowd"; nameEl.innerText="🗣️ CROWD / BHEED"; detailEl.innerText="Bheed ka shor | "+d+" dB | 300-2kHz tez | Log chilla rahe hain"; }
- else if(avgs[3]>58 && d>72){ newSrc="horn"; nameEl.innerText="📯 HORN / SEETI"; detailEl.innerText="Seeti/Horn | "+d+" dB | 2k-8kHz tez | Sharp awaaz"; }
- else if(d>70){ newSrc="mixed"; nameEl.innerText="🎧 DJ + CROWD MIX"; detailEl.innerText="Mixed loud | "+d+" dB | DJ + Bheed dono | Stadium jaisa"; }
- else { newSrc="talk"; nameEl.innerText="🎤 BAAT / MUSIC"; detailEl.innerText="Normal awaaz | "+d+" dB | Baat ya halka music"; }
-
+ // --- FINAL REAL DETECTION LOGIC ---
+ if(d<33){
+   nameEl.innerText="🤫 Quiet / Silent";
+   detailEl.innerHTML="Level: "+d+" dB SPL | RMS: "+rms.toFixed(5)+"<br>No loud source. Room ka halka shor.";
+ } else if(avgs[0]>60 && variance>0.02 && d>87){
+   nameEl.innerText="🥁 DHOLAK / DHOL";
+   detailEl.innerHTML="Pattern: Thap-Thap Beat Detected (Var: "+variance.toFixed(3)+")<br>Freq: 20-80Hz = "+avgs[0]+" | Power: "+d+" dB | Dhol baj raha hai";
+ } else if(avgs[1]>62 && d>84){
+   nameEl.innerText="🔊 DJ BASS BOX";
+   detailEl.innerHTML="Pattern: Continuous Heavy Bass<br>Freq: 80-300Hz = "+avgs[1]+" | Power: "+d+" dB | DJ Speaker loud hai";
+ } else if(avgs[2]>64 && variance>0.015 && d>78){
+   nameEl.innerText="🗣️ BHEED / CROWD ROAR";
+   detailEl.innerHTML="Pattern: Human Voice Crowd<br>Freq: 300-2000Hz = "+avgs[2]+" | Power: "+d+" dB | 100+ log chilla rahe hain";
+ } else if(avgs[3]>60 && d>74){
+   nameEl.innerText="📯 HORN / WHISTLE / SEETI";
+   detailEl.innerHTML="Pattern: Sharp High Frequency<br>Freq: 2000-8000Hz = "+avgs[3]+" | Power: "+d+" dB | Horn/Seeti baj rahi hai";
+ } else if(d>76){
+   nameEl.innerText="🎧 MIXED STADIUM NOISE";
+   detailEl.innerHTML="DJ + Bheed Mix | Power: "+d+" dB<br>All Bands: "+avgs.join(" | ")+" | Stadium jaisa shor";
+ } else {
+   nameEl.innerText="🎤 BAAT / HALKA MUSIC";
+   detailEl.innerHTML="Normal Level | Power: "+d+" dB<br>Freq Peak: "+["Sub","Bass","Mid","High"][avgs.indexOf(Math.max(...avgs))];
+ }
  requestAnimationFrame(loop);
 }
-function draw(){ if(!run){requestAnimationFrame(draw);return;} const data=new Uint8Array(analyser.fftSize); analyser.getByteTimeDomainData(data); wCtx.clearRect(0,0,wave.width,wave.height); wCtx.lineWidth=2; wCtx.strokeStyle='#ff3d00'; wCtx.beginPath(); let slice=wave.width/data.length, x=0; for(let i=0;i<data.length;i++){let v=data[i]/128, y=v*wave.height/2; if(i==0)wCtx.moveTo(x,y); else wCtx.lineTo(x,y); x+=slice;} wCtx.stroke(); requestAnimationFrame(draw);}
+function draw(){ if(!run){requestAnimationFrame(draw);return;} const data=new Uint8Array(analyser.fftSize); analyser.getByteTimeDomainData(data); wCtx.clearRect(0,0,wave.width,wave.height); wCtx.lineWidth=2.5; wCtx.strokeStyle='#ff3d00'; wCtx.shadowColor='#ff3d00'; wCtx.shadowBlur=10; wCtx.beginPath(); let slice=wave.width/data.length, x=0; for(let i=0;i<data.length;i++){let v=data[i]/128, y=v*wave.height/2; if(i==0)wCtx.moveTo(x,y); else wCtx.lineTo(x,y); x+=slice;} wCtx.stroke(); wCtx.shadowBlur=0; requestAnimationFrame(draw);}
 </script>
 </body>
 </html>
