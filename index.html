@@ -18,9 +18,9 @@ body{background:#040718;display:flex;justify-content:center;padding:14px;min-hei
 .left::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,#ff3d00,#ffcc00,#ff3d00)}
 .big{font-family:'Orbitron',sans-serif;font-size:84px;font-weight:900;color:#fff;line-height:1;letter-spacing:-2px;text-shadow:0 0 20px rgba(255,61,0,.5)}
 .unit{color:#ff3d00;font-weight:800;letter-spacing:5px;font-size:11px;margin-top:2px;font-family:'Orbitron',sans-serif}
-.src{margin-top:10px;background:linear-gradient(135deg,#1a2040,#12172e);border:1px solid #2a3a6a;border-left:3px solid #ff3d00;border-radius:14px;padding:11px;color:#ffeb3b;font-weight:700;font-size:12px;min-height:42px;display:flex;align-items:center;justify-content:center;text-align:center;box-shadow:inset 0 0 15px rgba(255,61,0,.1)}
+.src{margin-top:10px;background:linear-gradient(135deg,#1a2040,#12172e);border:1px solid #2a3a6a;border-left:3px solid #ff3d00;border-radius:14px;padding:11px;color:#ffeb3b;font-weight:700;font-size:12px;min-height:44px;display:flex;align-items:center;justify-content:center;text-align:center;box-shadow:inset 0 0 15px rgba(255,61,0,.1);line-height:1.2}
 .status{margin-top:8px;padding:9px;border-radius:12px;font-weight:800;font-size:11px;text-align:center;transition:.3s}
-.s1{background:rgba(0,230,118,.12);color:#00e676;border:1px solid #00a652}.s2{background:rgba(255,235,59,.12);color:#ffeb3b;border:1px solid #b8a600}.s3{background:rgba(255,145,0,.15);color:#ff9100;border:1px solid #ff6d00}.s4{background:rgba(255,23,68,.18);color:#ff1744;border:1px solid #ff1744;box-shadow:0 0 15px rgba(255,23,68,.3);animation:blink.7s infinite}
+.s1{background:rgba(0,230,118,.12);color:#00e676;border:1px solid #00a652}.s2{background:rgba(255,235,59,.12);color:#ffeb3b;border:1px solid #b8a600}.s3{background:rgba(255,145,0,.15);color:#ff9100;border:1px solid #ff6d00}.s4{background:rgba(255,23,68,.18);color:#ff1744;border:1px solid #ff1744;box-shadow:0 0 15px rgba(255,23,68,.3);animation:blink.7s infinite}.sFan{background:rgba(100,150,255,.18);color:#8ab4ff;border:1px solid #4a6fcc}
 @keyframes blink{50%{opacity:.7}}
 .thermo{width:60px;background:linear-gradient(180deg,#0a0a0a,#000);border-radius:32px;border:1px solid #2a2a2a;padding:8px 8px 14px;display:flex;flex-direction:column;align-items:center;box-shadow:inset 0 0 10px #000}
 .tube{width:26px;height:272px;background:#0f0f0f;border-radius:20px;border:1px solid #222;overflow:hidden;display:flex;flex-direction:column-reverse;position:relative}
@@ -28,15 +28,14 @@ body{background:#040718;display:flex;justify-content:center;padding:14px;min-hei
 .bulb{width:40px;height:40px;background:radial-gradient(circle at 30% 30%,#ff8c00,#ff1744);border-radius:50%;margin-top:-10px;border:2px solid #ff3d00;box-shadow:0 0 22px #ff3d00, inset 0 0 10px rgba(255,255,255,.3)}
 .marks{position:absolute;right:3px;top:12px;height:260px;display:flex;flex-direction:column;justify-content:space-between;color:#5a6a8a;font-size:7px;font-weight:800;text-align:right}
 .grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px}
-.k{background:linear-gradient(180deg,#162040,#0f1733);border:1px solid #1e2e56;border-radius:14px;padding:9px;text-align:center;box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+.k{background:linear-gradient(180deg,#162040,#0f1733);border:1px solid #1e2e56;border-radius:14px;padding:9px;text-align:center}
 .k b{color:#6b7ca3;font-size:7px;display:block;letter-spacing:1px}.k span{color:#fff;font-size:13px;font-weight:800;margin-top:2px;display:block;font-family:'Orbitron',sans-serif}
 .detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
 .d{background:linear-gradient(180deg,#131a36,#0f1430);border:1px solid #1e2e56;border-radius:14px;padding:10px;text-align:center}
-.d b{color:#6b7ca3;font-size:7px;display:block}.d span{color:#ffeb3b;font-size:12px;font-weight:800;margin-top:3px;display:block;font-family:'Orbitron',sans-serif}
-canvas{width:100%;height:74px;background:radial-gradient(circle at center,#0c122a 0%,#000 100%);border-radius:14px;margin-top:12px;border:1px solid #1e2a4a;box-shadow:inset 0 0 20px rgba(0,0,0,.8)}
+.d b{color:#6b7ca3;font-size:6.5px;display:block}.d span{color:#ffeb3b;font-size:12px;font-weight:800;margin-top:3px;display:block;font-family:'Orbitron',sans-serif}
+canvas{width:100%;height:74px;background:radial-gradient(circle at center,#0c122a 0%,#000 100%);border-radius:14px;margin-top:12px;border:1px solid #1e2a4a}
 .btn{width:100%;padding:15px;border:none;border-radius:16px;font-weight:800;font-size:14px;margin-top:12px;cursor:pointer;letter-spacing:.5px;transition:.2s;font-family:'Orbitron',sans-serif}
-.start{background:linear-gradient(135deg,#ff3d00,#ff6a00);color:#fff;box-shadow:0 12px 24px rgba(255,61,0,.35)}.start:active{transform:scale(.98)}
-.stop{background:#1e2a4e;color:#8aa0c8}
+.start{background:linear-gradient(135deg,#ff3d00,#ff6a00);color:#fff;box-shadow:0 12px 24px rgba(255,61,0,.35)}.stop{background:#1e2a4e;color:#8aa0c8}
 .footer{margin-top:16px;text-align:center;padding-top:12px;border-top:1px solid #1e2e56;color:#5a6e94;font-size:9px;line-height:1.7;letter-spacing:.6px}
 </style>
 </head>
@@ -56,16 +55,12 @@ canvas{width:100%;height:74px;background:radial-gradient(circle at center,#0c122
 <div class="k"><b>AVG</b><span id="av">0</span></div>
 </div>
 </div>
-
-<div class="thermo">
-<div class="tube"><div class="fill" id="fill"></div><div class="marks"><span>120</span><span>100</span><span>80</span><span>60</span><span>40</span><span>20</span><span>0</span></div></div>
-<div class="bulb"></div>
-</div>
+<div class="thermo"><div class="tube"><div class="fill" id="fill"></div><div class="marks"><span>120</span><span>100</span><span>80</span><span>60</span><span>40</span><span>20</span><span>0</span></div></div><div class="bulb"></div></div>
 </div>
 
 <div class="detail-grid">
-<div class="d"><b>SUB-BASS (DHOL/DJ)</b><span id="sub">0%</span></div>
-<div class="d"><b>BASS (SPEAKER)</b><span id="bass">0%</span></div>
+<div class="d"><b>SUB-BASS (DHOL)</b><span id="sub">0%</span></div>
+<div class="d"><b>BASS (DJ BOX)</b><span id="bass">0%</span></div>
 <div class="d"><b>VOICE / CROWD</b><span id="mid">0%</span></div>
 <div class="d"><b>HORN / WHISTLE</b><span id="high">0%</span></div>
 </div>
@@ -73,35 +68,37 @@ canvas{width:100%;height:74px;background:radial-gradient(circle at center,#0c122
 <canvas id="wave"></canvas>
 <button class="btn start" id="btn">🎙️ START DETECTION</button>
 <button class="btn stop" id="resetBtn">RESET PEAK</button>
-
 <div class="footer">CREATED AND DEVELOPED BY PUNYA BINAY SWAIN<br>COPYRIGHT ©️ RESERVED • 2026 • ALL RIGHTS RESERVED<br>Jay Jagannath 🙏</div>
 </div>
 
 <script>
 let aCtx, analyser, stream, run=false, max=0, tot=0, cnt=0;
+let rmsHistory=[], bandHistory=[[],[],[],[]];
 let wave=document.getElementById('wave'), wCtx=wave.getContext('2d');
 const btn=document.getElementById('btn'), resetBtn=document.getElementById('resetBtn');
 function resize(){wave.width=wave.offsetWidth*2; wave.height=wave.offsetHeight*2}
 window.addEventListener('resize',resize); resize();
-
 btn.addEventListener('click', toggle);
-resetBtn.addEventListener('click', resetM);
+resetBtn.addEventListener('click', ()=>{max=0; tot=0; cnt=0; rmsHistory=[]; bandHistory=[[],[],[],[]]; document.getElementById('mx').innerText='0 dB'; document.getElementById('av').innerText='0 dB';});
 
 async function toggle(){
- if(run){stopM();return;}
+ if(run){run=false; if(stream)stream.getTracks().forEach(t=>t.stop()); if(aCtx)aCtx.close(); btn.innerText='🎙️ START DETECTION'; btn.className='btn start'; return;}
  try{
   stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false,noiseSuppression:false,autoGainControl:false}});
-  aCtx=new(window.AudioContext||window.webkitAudioContext)();
-  if(aCtx.state==='suspended') await aCtx.resume();
-  analyser=aCtx.createAnalyser(); analyser.fftSize=4096; analyser.smoothingTimeConstant=0.15;
+  aCtx=new(window.AudioContext||window.webkitAudioContext)(); if(aCtx.state==='suspended') await aCtx.resume();
+  analyser=aCtx.createAnalyser(); analyser.fftSize=4096; analyser.smoothingTimeConstant=0.75;
   aCtx.createMediaStreamSource(stream).connect(analyser);
-  run=true; max=0; tot=0; cnt=0;
-  btn.innerText='⏹️ STOP TEST'; btn.className='btn stop';
-  loop(); draw();
+  run=true; max=0; tot=0; cnt=0; rmsHistory=[]; bandHistory=[[],[],[],[]];
+  btn.innerText='⏹️ STOP TEST'; btn.className='btn stop'; loop(); draw();
  }catch(e){alert('Mic Allow karo bhai');}
 }
-function stopM(){run=false; if(stream)stream.getTracks().forEach(t=>t.stop()); if(aCtx)aCtx.close(); btn.innerText='🎙️ START DETECTION'; btn.className='btn start';}
-function resetM(){max=0; tot=0; cnt=0; document.getElementById('mx').innerText='0 dB'; document.getElementById('av').innerText='0 dB';}
+
+function getVariance(arr){
+ if(arr.length<5) return 0;
+ let avg=arr.reduce((a,b)=>a+b,0)/arr.length;
+ let v=0; for(let x of arr) v+=Math.abs(x-avg);
+ return v/arr.length;
+}
 
 function loop(){
  if(!run) return;
@@ -112,26 +109,36 @@ function loop(){
 
  const freqData=new Uint8Array(analyser.frequencyBinCount);
  analyser.getByteFrequencyData(freqData);
- let sub=0,bass=0,mid=0,high=0;
- for(let i=0;i<freqData.length;i++){
-   let freq = i * aCtx.sampleRate / analyser.fftSize;
-   if(freq<80) sub+=freqData[i];
-   else if(freq<250) bass+=freqData[i];
-   else if(freq<2000) mid+=freqData[i];
-   else high+=freqData[i];
- }
- let total=sub+bass+mid+high+1;
- let subP=Math.round(sub/total*100), bassP=Math.round(bass/total*100), midP=Math.round(mid/total*100), highP=Math.round(high/total*100);
- document.getElementById('sub').innerText=subP+'%';
- document.getElementById('bass').innerText=bassP+'%';
- document.getElementById('mid').innerText=midP+'%';
- document.getElementById('high').innerText=highP+'%';
 
- let db;
- if(rms < 0.00001) db = 22 + Math.random()*4;
- else { db = 20*Math.log10(rms) + 95; db=Math.max(20,Math.min(120,db)); }
- let d=Math.round(db);
- max=Math.max(max,d); tot+=d; cnt++;
+ // FIX 1: AVERAGE POWER - sum/count
+ let bands=[0,0,0,0], counts=[0,0,0,0], peaks=[0,0,0,0];
+ for(let i=0;i<freqData.length;i++){
+   let f=i*aCtx.sampleRate/analyser.fftSize;
+   let idx=-1;
+   if(f<90) idx=0;
+   else if(f<250) idx=1;
+   else if(f<2500) idx=2;
+   else if(f<8000) idx=3;
+   if(idx>=0){ bands[idx]+=freqData[i]; counts[idx]++; peaks[idx]=Math.max(peaks[idx], freqData[i]); }
+ }
+ let avgPower=bands.map((v,i)=>counts[i]?v/counts[i]:0);
+ let total=avgPower.reduce((a,b)=>a+b,0)+0.001;
+ let perc=avgPower.map(v=>Math.round(v/total*100));
+
+ document.getElementById('sub').innerText=perc[0]+'%';
+ document.getElementById('bass').innerText=perc[1]+'%';
+ document.getElementById('mid').innerText=perc[2]+'%';
+ document.getElementById('high').innerText=perc[3]+'%';
+
+ // History for genuine detection
+ rmsHistory.push(rms); if(rmsHistory.length>40) rmsHistory.shift();
+ for(let i=0;i<4;i++){ bandHistory[i].push(avgPower[i]); if(bandHistory[i].length>40) bandHistory[i].shift(); }
+ let variance=getVariance(rmsHistory);
+ let bandVar=bandHistory.map(a=>getVariance(a));
+
+ let db = rms < 0.000008? 22+Math.random()*3 : 20*Math.log10(rms)+95;
+ db=Math.max(20,Math.min(120,db));
+ let d=Math.round(db); max=Math.max(max,d); tot+=d; cnt++;
 
  document.getElementById('big').innerText=d;
  document.getElementById('cur').innerText=d+' dB';
@@ -140,34 +147,32 @@ function loop(){
  document.getElementById('fill').style.height=(d/120*100)+'%';
 
  let srcEl=document.getElementById('src'), lvlEl=document.getElementById('lvl');
- if(subP>35 && d>88){
-   srcEl.innerText='🥁 DHOL / DJ SUB-BASS';
-   lvlEl.innerText='Full Dhol / Bass Box - '+d+' dB';
-   lvlEl.className='status s4';
- } else if(bassP>35 && d>85){
-   srcEl.innerText='🔊 DJ SPEAKER BASS';
-   lvlEl.innerText='DJ Box Loud - '+d+' dB - Police Warning';
-   lvlEl.className='status s4';
- } else if(midP>45 && d>82){
-   srcEl.innerText='🗣️ STADIUM CROWD ROAR';
-   lvlEl.innerText='Bheed Chillana - '+d+' dB';
-   lvlEl.className='status s3';
- } else if(highP>30 && d>75){
-   srcEl.innerText='📯 HORN / WHISTLE / SEETI';
-   lvlEl.innerText='Horn / Seeti - '+d+' dB';
-   lvlEl.className='status s2';
- } else if(d>75){
-   srcEl.innerText='🎧 MIXED LOUD - DJ + CROWD';
-   lvlEl.innerText='Mixed Loud Sound - '+d+' dB';
-   lvlEl.className='status s3';
- } else if(d>45){
-   srcEl.innerText='🎤 VOICE / MUSIC';
-   lvlEl.innerText='Normal Music / Talk - '+d+' dB';
-   lvlEl.className='status s2';
- } else {
-   srcEl.innerText='🤫 QUIET ROOM';
-   lvlEl.innerText='Shant Kamra - '+d+' dB';
-   lvlEl.className='status s1';
+ let maxIdx=avgPower.indexOf(Math.max(...avgPower));
+
+ // GENUINE SOURCE LOGIC
+ if(d<38){
+   srcEl.innerText='🤫 QUIET ROOM'; lvlEl.innerText='Shant - '+d+' dB'; lvlEl.className='status s1';
+ }
+ else if(d>=38 && d<=68 && (perc[0]+perc[1])>58 && variance<0.009){
+   srcEl.innerText='🌀 CEILING FAN / AC HUM'; lvlEl.innerText='Fan/AC Hum - Continuous - '+d+' dB'; lvlEl.className='status sFan';
+ }
+ else if(perc[0]>32 && variance>0.018 && d>78 && bandVar[0]>5){
+   srcEl.innerText='🥁 DHOL / DHOLAK BEAT'; lvlEl.innerText='Dhol Thap - '+d+' dB - Sub Dominant '+perc[0]+'%'; lvlEl.className='status s4';
+ }
+ else if((perc[0]+perc[1])>50 && d>86){
+   srcEl.innerText='🔊 DJ SPEAKER - FULL BASS'; lvlEl.innerText='DJ Box - '+d+' dB - Police Warning'; lvlEl.className='status s4';
+ }
+ else if(perc[3]>30 && peaks[3]>180 && (peaks[3]-avgPower[3])>35 && d>60){
+   srcEl.innerText='📯 HORN / WHISTLE / SEETI'; lvlEl.innerText='Tez Seeti/Horn - Sharp Peak - '+d+' dB'; lvlEl.className='status s2';
+ }
+ else if(perc[2]>38 && d>52){
+   srcEl.innerText='🗣️ HUMAN VOICE / CROWD'; lvlEl.innerText='Aadmi ki Awaaz/Bheed - '+d+' dB - Mid '+perc[2]+'%'; lvlEl.className='status s2';
+ }
+ else if(d>75){
+   srcEl.innerText='🎧 MIXED LOUD - DJ + CROWD'; lvlEl.innerText='Mixed Loud - '+d+' dB'; lvlEl.className='status s3';
+ }
+ else {
+   srcEl.innerText='🎤 NORMAL SOUND'; lvlEl.innerText='Normal - '+d+' dB - Voice '+perc[2]+'%'; lvlEl.className='status s2';
  }
  requestAnimationFrame(loop);
 }
