@@ -2,181 +2,1396 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LOUDSPEAKER NOISE CHECKER - By Punya</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@800;900&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Loudspeaker Noise Meter By Punya Binay Swain</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800;900&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
-body{background:#040718;display:flex;justify-content:center;padding:14px;min-height:100vh}
-.box{width:100%;max-width:410px;background:linear-gradient(180deg,#1e294f 0%,#121933 50%,#0a0f24 100%);border-radius:32px;padding:18px;border:1px solid #2e3f72;box-shadow:0 25px 70px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.1)}
-.head{text-align:center}
-.head h1{font-family:'Orbitron',sans-serif;color:#fff;font-size:20px;letter-spacing:.5px;font-weight:900}
-.head h1 span{color:#ff3d00}
-.head p{color:#ffcc66;font-size:10px;letter-spacing:.8px;margin-top:5px;font-weight:600;background:rgba(255,204,102,.1);display:inline-block;padding:4px 10px;border-radius:20px;border:1px solid rgba(255,204,102,.2)}
-.main-meter{display:flex;gap:14px;margin-top:18px;align-items:flex-end}
-.left{flex:1;background:radial-gradient(circle at top, #151c36 0%, #000 70%);border-radius:24px;padding:14px;border:1px solid #222e52;text-align:center;position:relative;overflow:hidden}
-.left::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,#ff3d00,#ffcc00,#ff3d00)}
-.big{font-family:'Orbitron',sans-serif;font-size:84px;font-weight:900;color:#fff;line-height:1;letter-spacing:-2px;text-shadow:0 0 20px rgba(255,61,0,.5)}
-.unit{color:#ff3d00;font-weight:800;letter-spacing:5px;font-size:11px;margin-top:2px;font-family:'Orbitron',sans-serif}
-.src{margin-top:10px;background:linear-gradient(135deg,#1a2040,#12172e);border:1px solid #2a3a6a;border-left:3px solid #ff3d00;border-radius:14px;padding:11px;color:#ffeb3b;font-weight:700;font-size:12px;min-height:44px;display:flex;align-items:center;justify-content:center;text-align:center;box-shadow:inset 0 0 15px rgba(255,61,0,.1);line-height:1.2}
-.status{margin-top:8px;padding:9px;border-radius:12px;font-weight:800;font-size:11px;text-align:center;transition:.3s}
-.s1{background:rgba(0,230,118,.12);color:#00e676;border:1px solid #00a652}.s2{background:rgba(255,235,59,.12);color:#ffeb3b;border:1px solid #b8a600}.s3{background:rgba(255,145,0,.15);color:#ff9100;border:1px solid #ff6d00}.s4{background:rgba(255,23,68,.18);color:#ff1744;border:1px solid #ff1744;box-shadow:0 0 15px rgba(255,23,68,.3);animation:blink.7s infinite}.sFan{background:rgba(100,150,255,.18);color:#8ab4ff;border:1px solid #4a6fcc}
-@keyframes blink{50%{opacity:.7}}
-.thermo{width:60px;background:linear-gradient(180deg,#0a0a0a,#000);border-radius:32px;border:1px solid #2a2a2a;padding:8px 8px 14px;display:flex;flex-direction:column;align-items:center;box-shadow:inset 0 0 10px #000}
-.tube{width:26px;height:272px;background:#0f0f0f;border-radius:20px;border:1px solid #222;overflow:hidden;display:flex;flex-direction:column-reverse;position:relative}
-.fill{width:100%;height:0%;background:linear-gradient(180deg,#ff1744 0%,#ff9100 40%,#ffeb3b 70%,#00e676 100%);transition:height.15s linear;border-radius:20px;box-shadow:0 0 12px rgba(255,61,0,.6)}
-.bulb{width:40px;height:40px;background:radial-gradient(circle at 30% 30%,#ff8c00,#ff1744);border-radius:50%;margin-top:-10px;border:2px solid #ff3d00;box-shadow:0 0 22px #ff3d00, inset 0 0 10px rgba(255,255,255,.3)}
-.marks{position:absolute;right:3px;top:12px;height:260px;display:flex;flex-direction:column;justify-content:space-between;color:#5a6a8a;font-size:7px;font-weight:800;text-align:right}
-.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px}
-.k{background:linear-gradient(180deg,#162040,#0f1733);border:1px solid #1e2e56;border-radius:14px;padding:9px;text-align:center}
-.k b{color:#6b7ca3;font-size:7px;display:block;letter-spacing:1px}.k span{color:#fff;font-size:13px;font-weight:800;margin-top:2px;display:block;font-family:'Orbitron',sans-serif}
-.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
-.d{background:linear-gradient(180deg,#131a36,#0f1430);border:1px solid #1e2e56;border-radius:14px;padding:10px;text-align:center}
-.d b{color:#6b7ca3;font-size:6.5px;display:block}.d span{color:#ffeb3b;font-size:12px;font-weight:800;margin-top:3px;display:block;font-family:'Orbitron',sans-serif}
-canvas{width:100%;height:74px;background:radial-gradient(circle at center,#0c122a 0%,#000 100%);border-radius:14px;margin-top:12px;border:1px solid #1e2a4a}
-.btn{width:100%;padding:15px;border:none;border-radius:16px;font-weight:800;font-size:14px;margin-top:12px;cursor:pointer;letter-spacing:.5px;transition:.2s;font-family:'Orbitron',sans-serif}
-.start{background:linear-gradient(135deg,#ff3d00,#ff6a00);color:#fff;box-shadow:0 12px 24px rgba(255,61,0,.35)}.stop{background:#1e2a4e;color:#8aa0c8}
-.footer{margin-top:16px;text-align:center;padding-top:12px;border-top:1px solid #1e2e56;color:#5a6e94;font-size:9px;line-height:1.7;letter-spacing:.6px}
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#040718;
+    display:flex;
+    justify-content:center;
+    padding:14px;
+    min-height:100vh;
+}
+
+.box{
+    width:100%;
+    max-width:410px;
+    background:linear-gradient(180deg,#1e294f 0%,#121933 50%,#0a0f24 100%);
+    border-radius:32px;
+    padding:18px;
+    border:1px solid #2e3f72;
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.7),
+        inset 0 1px 0 rgba(255,255,255,.1);
+}
+
+/* HEADER */
+
+.head{
+    text-align:center;
+}
+
+.head h1{
+    font-family:'Orbitron',sans-serif;
+    color:#fff;
+    font-size:19px;
+    letter-spacing:.4px;
+    font-weight:900;
+    line-height:1.3;
+}
+
+.head h1 span{
+    color:#ff3d00;
+}
+
+.head p{
+    color:#ffcc66;
+    font-size:9px;
+    letter-spacing:.6px;
+    margin-top:7px;
+    font-weight:600;
+    background:rgba(255,204,102,.1);
+    display:inline-block;
+    padding:5px 10px;
+    border-radius:20px;
+    border:1px solid rgba(255,204,102,.2);
+}
+
+/* MAIN */
+
+.main-meter{
+    display:flex;
+    gap:14px;
+    margin-top:18px;
+    align-items:flex-end;
+}
+
+.left{
+    flex:1;
+    background:radial-gradient(circle at top,#151c36 0%,#000 70%);
+    border-radius:24px;
+    padding:14px;
+    border:1px solid #222e52;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+}
+
+.left::before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:2px;
+    background:linear-gradient(90deg,#ff3d00,#ffcc00,#ff3d00);
+}
+
+.big{
+    font-family:'Orbitron',sans-serif;
+    font-size:76px;
+    font-weight:900;
+    color:#fff;
+    line-height:1;
+    letter-spacing:-2px;
+    text-shadow:0 0 20px rgba(255,61,0,.5);
+}
+
+.unit{
+    color:#ff3d00;
+    font-weight:800;
+    letter-spacing:4px;
+    font-size:10px;
+    margin-top:4px;
+    font-family:'Orbitron',sans-serif;
+}
+
+.src{
+    margin-top:10px;
+    background:linear-gradient(135deg,#1a2040,#12172e);
+    border:1px solid #2a3a6a;
+    border-left:3px solid #ff3d00;
+    border-radius:14px;
+    padding:10px;
+    color:#ffeb3b;
+    font-weight:700;
+    font-size:11px;
+    min-height:45px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    line-height:1.25;
+}
+
+.detail{
+    margin-top:6px;
+    color:#7183aa;
+    font-size:8px;
+    line-height:1.35;
+}
+
+.status{
+    margin-top:8px;
+    padding:9px;
+    border-radius:12px;
+    font-weight:800;
+    font-size:10px;
+    text-align:center;
+    transition:.3s;
+}
+
+.s1{
+    background:rgba(0,230,118,.12);
+    color:#00e676;
+    border:1px solid #00a652;
+}
+
+.s2{
+    background:rgba(255,235,59,.12);
+    color:#ffeb3b;
+    border:1px solid #b8a600;
+}
+
+.s3{
+    background:rgba(255,145,0,.15);
+    color:#ff9100;
+    border:1px solid #ff6d00;
+}
+
+.s4{
+    background:rgba(255,23,68,.18);
+    color:#ff1744;
+    border:1px solid #ff1744;
+    box-shadow:0 0 15px rgba(255,23,68,.3);
+    animation:blink .7s infinite;
+}
+
+.sFan{
+    background:rgba(100,150,255,.18);
+    color:#8ab4ff;
+    border:1px solid #4a6fcc;
+}
+
+@keyframes blink{
+    50%{opacity:.7}
+}
+
+/* THERMOMETER */
+
+.thermo{
+    width:60px;
+    background:linear-gradient(180deg,#0a0a0a,#000);
+    border-radius:32px;
+    border:1px solid #2a2a2a;
+    padding:8px 8px 14px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    box-shadow:inset 0 0 10px #000;
+}
+
+.tube{
+    width:26px;
+    height:272px;
+    background:#0f0f0f;
+    border-radius:20px;
+    border:1px solid #222;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column-reverse;
+    position:relative;
+}
+
+.fill{
+    width:100%;
+    height:0%;
+    background:linear-gradient(
+        180deg,
+        #ff1744 0%,
+        #ff9100 40%,
+        #ffeb3b 70%,
+        #00e676 100%
+    );
+    transition:height:.12s linear;
+    border-radius:20px;
+    box-shadow:0 0 12px rgba(255,61,0,.6);
+}
+
+.marks{
+    position:absolute;
+    right:3px;
+    top:12px;
+    height:250px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    color:#5a6a8a;
+    font-size:7px;
+    font-weight:800;
+    text-align:right;
+}
+
+.bulb{
+    width:40px;
+    height:40px;
+    background:radial-gradient(circle at 30% 30%,#ff8c00,#ff1744);
+    border-radius:50%;
+    margin-top:-10px;
+    border:2px solid #ff3d00;
+    box-shadow:0 0 22px #ff3d00,
+               inset 0 0 10px rgba(255,255,255,.3);
+}
+
+/* STATS */
+
+.grid{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:8px;
+    margin-top:12px;
+}
+
+.k{
+    background:linear-gradient(180deg,#162040,#0f1733);
+    border:1px solid #1e2e56;
+    border-radius:14px;
+    padding:9px;
+    text-align:center;
+}
+
+.k b{
+    color:#6b7ca3;
+    font-size:7px;
+    display:block;
+    letter-spacing:1px;
+}
+
+.k span{
+    color:#fff;
+    font-size:12px;
+    font-weight:800;
+    margin-top:2px;
+    display:block;
+    font-family:'Orbitron',sans-serif;
+}
+
+/* FREQUENCY */
+
+.detail-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    margin-top:12px;
+}
+
+.d{
+    background:linear-gradient(180deg,#131a36,#0f1430);
+    border:1px solid #1e2e56;
+    border-radius:14px;
+    padding:10px;
+    text-align:center;
+}
+
+.d b{
+    color:#6b7ca3;
+    font-size:6.5px;
+    display:block;
+}
+
+.d span{
+    color:#ffeb3b;
+    font-size:12px;
+    font-weight:800;
+    margin-top:3px;
+    display:block;
+    font-family:'Orbitron',sans-serif;
+}
+
+.d small{
+    color:#607398;
+    display:block;
+    margin-top:3px;
+    font-size:7px;
+}
+
+/* SOUND ANALYSIS */
+
+.analysis{
+    margin-top:12px;
+    background:linear-gradient(180deg,#111a36,#0b1027);
+    border:1px solid #23345d;
+    border-radius:15px;
+    padding:11px;
+}
+
+.analysis-title{
+    color:#7184ae;
+    font-size:7px;
+    letter-spacing:1.2px;
+    font-weight:800;
+}
+
+.analysis-main{
+    color:#fff;
+    font-family:'Orbitron',sans-serif;
+    font-size:12px;
+    margin-top:5px;
+}
+
+.analysis-reason{
+    color:#7587ab;
+    font-size:8px;
+    line-height:1.4;
+    margin-top:4px;
+}
+
+/* WAVE */
+
+canvas{
+    width:100%;
+    height:74px;
+    background:radial-gradient(circle at center,#0c122a 0%,#000 100%);
+    border-radius:14px;
+    margin-top:12px;
+    border:1px solid #1e2a4a;
+}
+
+/* BUTTONS */
+
+.btn{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:16px;
+    font-weight:800;
+    font-size:13px;
+    margin-top:12px;
+    cursor:pointer;
+    letter-spacing:.4px;
+    transition:.2s;
+    font-family:'Orbitron',sans-serif;
+}
+
+.btn:active{
+    transform:scale(.98);
+}
+
+.start{
+    background:linear-gradient(135deg,#ff3d00,#ff6a00);
+    color:#fff;
+    box-shadow:0 12px 24px rgba(255,61,0,.35);
+}
+
+.stop{
+    background:#1e2a4e;
+    color:#8aa0c8;
+}
+
+.reset{
+    background:#111b35;
+    color:#ffcc66;
+    border:1px solid #263963;
+}
+
+/* FOOTER */
+
+.footer{
+    margin-top:16px;
+    text-align:center;
+    padding-top:12px;
+    border-top:1px solid #1e2e56;
+    color:#5a6e94;
+    font-size:8px;
+    line-height:1.7;
+    letter-spacing:.5px;
+}
+
+.calibration{
+    margin-top:8px;
+    color:#465979;
+    font-size:7px;
+    text-align:center;
+}
 </style>
 </head>
+
 <body>
+
 <div class="box">
-<div class="head"><h1>LOUDSPEAKER <span>NOISE CHECKER</span></h1><p>💛 Sun Bhi Lo, Samajh Bhi Lo - Your Sound Ka Sach 💛</p></div>
+
+<div class="head">
+    <h1>LOUDSPEAKER <span>NOISE METER</span></h1>
+    <p>🎧 Measure. Understand. Control Your Sound. 🔊</p>
+</div>
 
 <div class="main-meter">
+
 <div class="left">
-<div class="big" id="big">--</div>
-<div class="unit">DECIBEL</div>
-<div class="src" id="src">TAP START TO DETECT</div>
-<div class="status s1" id="lvl">Waiting for mic...</div>
-<div class="grid">
-<div class="k"><b>NOW</b><span id="cur">0</span></div>
-<div class="k"><b>PEAK</b><span id="mx" style="color:#ff3d00">0</span></div>
-<div class="k"><b>AVG</b><span id="av">0</span></div>
+
+    <div class="big" id="big">--</div>
+    <div class="unit">DECIBEL</div>
+
+    <div class="src" id="src">
+        TAP START TO DETECT
+    </div>
+
+    <div class="detail" id="sourceDetail">
+        Microphone analysis is ready
+    </div>
+
+    <div class="status s1" id="lvl">
+        Waiting for microphone...
+    </div>
+
+    <div class="grid">
+
+        <div class="k">
+            <b>NOW</b>
+            <span id="cur">0 dB</span>
+        </div>
+
+        <div class="k">
+            <b>PEAK</b>
+            <span id="mx" style="color:#ff3d00">0 dB</span>
+        </div>
+
+        <div class="k">
+            <b>AVG</b>
+            <span id="av">0 dB</span>
+        </div>
+
+    </div>
+
 </div>
+
+<div class="thermo">
+
+    <div class="tube">
+
+        <div class="fill" id="fill"></div>
+
+        <div class="marks">
+            <span>120</span>
+            <span>100</span>
+            <span>80</span>
+            <span>60</span>
+            <span>40</span>
+            <span>20</span>
+            <span>0</span>
+        </div>
+
+    </div>
+
+    <div class="bulb"></div>
+
 </div>
-<div class="thermo"><div class="tube"><div class="fill" id="fill"></div><div class="marks"><span>120</span><span>100</span><span>80</span><span>60</span><span>40</span><span>20</span><span>0</span></div></div><div class="bulb"></div></div>
+
 </div>
 
 <div class="detail-grid">
-<div class="d"><b>SUB-BASS (DHOL)</b><span id="sub">0%</span></div>
-<div class="d"><b>BASS (DJ BOX)</b><span id="bass">0%</span></div>
-<div class="d"><b>VOICE / CROWD</b><span id="mid">0%</span></div>
-<div class="d"><b>HORN / WHISTLE</b><span id="high">0%</span></div>
+
+<div class="d">
+    <b>SUB-BASS • DHOL</b>
+    <span id="sub">0%</span>
+    <small>20–90 Hz</small>
+</div>
+
+<div class="d">
+    <b>BASS • DJ BOX</b>
+    <span id="bass">0%</span>
+    <small>90–250 Hz</small>
+</div>
+
+<div class="d">
+    <b>VOICE • CROWD</b>
+    <span id="mid">0%</span>
+    <small>250–2500 Hz</small>
+</div>
+
+<div class="d">
+    <b>HORN • WHISTLE</b>
+    <span id="high">0%</span>
+    <small>2500–8000 Hz</small>
+</div>
+
+</div>
+
+<div class="analysis">
+
+    <div class="analysis-title">
+        LIVE SOUND ANALYSIS
+    </div>
+
+    <div class="analysis-main" id="analysisMain">
+        Waiting for sound...
+    </div>
+
+    <div class="analysis-reason" id="analysisReason">
+        Start detection to analyse frequency distribution and sound behaviour.
+    </div>
+
 </div>
 
 <canvas id="wave"></canvas>
-<button class="btn start" id="btn">🎙️ START DETECTION</button>
-<button class="btn stop" id="resetBtn">RESET PEAK</button>
-<div class="footer">CREATED AND DEVELOPED BY PUNYA BINAY SWAIN<br>COPYRIGHT ©️ RESERVED • 2026 • ALL RIGHTS RESERVED<br>Jay Jagannath 🙏</div>
+
+<button class="btn start" id="btn">
+    🎙️ START DETECTION
+</button>
+
+<button class="btn reset" id="resetBtn">
+    RESET PEAK & AVERAGE
+</button>
+
+<div class="calibration">
+    ⚠ Browser microphone meters are estimated SPL values.
+    Exact SPL requires a calibrated microphone.
+</div>
+
+<div class="footer">
+    CREATED AND DEVELOPED BY PUNYA BINAY SWAIN<br>
+    COPYRIGHT © 2026 • ALL RIGHTS RESERVED<br>
+    Jay Jagannath 🙏
+</div>
+
 </div>
 
 <script>
-let aCtx, analyser, stream, run=false, max=0, tot=0, cnt=0;
-let rmsHistory=[], bandHistory=[[],[],[],[]];
-let wave=document.getElementById('wave'), wCtx=wave.getContext('2d');
-const btn=document.getElementById('btn'), resetBtn=document.getElementById('resetBtn');
-function resize(){wave.width=wave.offsetWidth*2; wave.height=wave.offsetHeight*2}
-window.addEventListener('resize',resize); resize();
-btn.addEventListener('click', toggle);
-resetBtn.addEventListener('click', ()=>{max=0; tot=0; cnt=0; rmsHistory=[]; bandHistory=[[],[],[],[]]; document.getElementById('mx').innerText='0 dB'; document.getElementById('av').innerText='0 dB';});
+
+/* =========================================================
+   LOUDSPEAKER NOISE METER
+   Real microphone / Web Audio API analysis
+   ========================================================= */
+
+let aCtx = null;
+let analyser = null;
+let stream = null;
+
+let running = false;
+
+let maxDb = 0;
+let totalDb = 0;
+let sampleCount = 0;
+
+let rmsHistory = [];
+let bandHistory = [[],[],[],[]];
+
+let wave = document.getElementById("wave");
+let wCtx = wave.getContext("2d");
+
+const btn = document.getElementById("btn");
+const resetBtn = document.getElementById("resetBtn");
+
+const big = document.getElementById("big");
+const cur = document.getElementById("cur");
+const mx = document.getElementById("mx");
+const av = document.getElementById("av");
+
+const fill = document.getElementById("fill");
+
+const src = document.getElementById("src");
+const sourceDetail = document.getElementById("sourceDetail");
+const lvl = document.getElementById("lvl");
+
+const analysisMain = document.getElementById("analysisMain");
+const analysisReason = document.getElementById("analysisReason");
+
+
+/* =========================================================
+   RESIZE CANVAS
+   ========================================================= */
+
+function resize(){
+
+    const ratio = window.devicePixelRatio || 1;
+
+    wave.width = wave.clientWidth * ratio;
+    wave.height = wave.clientHeight * ratio;
+
+    wCtx.setTransform(ratio,0,0,ratio,0,0);
+}
+
+window.addEventListener("resize",resize);
+resize();
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+resetBtn.addEventListener("click",()=>{
+
+    maxDb = 0;
+    totalDb = 0;
+    sampleCount = 0;
+
+    rmsHistory = [];
+    bandHistory = [[],[],[],[]];
+
+    mx.innerText = "0 dB";
+    av.innerText = "0 dB";
+
+    analysisMain.innerText = running
+        ? "Peak and average reset"
+        : "Waiting for sound...";
+
+    analysisReason.innerText =
+        "Measurement history has been cleared.";
+
+});
+
+
+/* =========================================================
+   START / STOP
+   ========================================================= */
+
+btn.addEventListener("click",toggle);
 
 async function toggle(){
- if(run){run=false; if(stream)stream.getTracks().forEach(t=>t.stop()); if(aCtx)aCtx.close(); btn.innerText='🎙️ START DETECTION'; btn.className='btn start'; return;}
- try{
-  stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false,noiseSuppression:false,autoGainControl:false}});
-  aCtx=new(window.AudioContext||window.webkitAudioContext)(); if(aCtx.state==='suspended') await aCtx.resume();
-  analyser=aCtx.createAnalyser(); analyser.fftSize=4096; analyser.smoothingTimeConstant=0.75;
-  aCtx.createMediaStreamSource(stream).connect(analyser);
-  run=true; max=0; tot=0; cnt=0; rmsHistory=[]; bandHistory=[[],[],[],[]];
-  btn.innerText='⏹️ STOP TEST'; btn.className='btn stop'; loop(); draw();
- }catch(e){alert('Mic Allow karo bhai');}
+
+    if(running){
+
+        stopDetection();
+
+        return;
+    }
+
+    try{
+
+        if(!navigator.mediaDevices ||
+           !navigator.mediaDevices.getUserMedia){
+
+            alert(
+                "Is browser mein microphone API available nahi hai. " +
+                "HTTPS ya localhost par website open karo."
+            );
+
+            return;
+        }
+
+        stream = await navigator.mediaDevices.getUserMedia({
+
+            audio:{
+                echoCancellation:false,
+                noiseSuppression:false,
+                autoGainControl:false,
+                channelCount:1
+            }
+
+        });
+
+        const AudioContext =
+            window.AudioContext ||
+            window.webkitAudioContext;
+
+        aCtx = new AudioContext();
+
+        if(aCtx.state === "suspended"){
+            await aCtx.resume();
+        }
+
+        analyser = aCtx.createAnalyser();
+
+        /*
+          Large FFT gives better frequency resolution.
+        */
+
+        analyser.fftSize = 4096;
+
+        analyser.smoothingTimeConstant = 0.55;
+
+        analyser.minDecibels = -100;
+        analyser.maxDecibels = -10;
+
+        const microphone =
+            aCtx.createMediaStreamSource(stream);
+
+        microphone.connect(analyser);
+
+        running = true;
+
+        maxDb = 0;
+        totalDb = 0;
+        sampleCount = 0;
+
+        rmsHistory = [];
+        bandHistory = [[],[],[],[]];
+
+        btn.innerText = "⏹️ STOP TEST";
+        btn.className = "btn stop";
+
+        src.innerText = "🎙️ LISTENING...";
+        sourceDetail.innerText =
+            "Analysing live microphone signal";
+
+        lvl.innerText = "Microphone active";
+        lvl.className = "status s1";
+
+        loop();
+        drawWave();
+
+    }catch(error){
+
+        console.error(error);
+
+        alert(
+            "Microphone access allow karo.\n\n" +
+            "Agar permission already denied hai, browser settings se " +
+            "Microphone permission ON karo."
+        );
+
+    }
 }
+
+
+/* =========================================================
+   STOP
+   ========================================================= */
+
+function stopDetection(){
+
+    running = false;
+
+    if(stream){
+
+        stream.getTracks().forEach(track=>{
+            track.stop();
+        });
+
+        stream = null;
+    }
+
+    if(aCtx){
+
+        aCtx.close();
+        aCtx = null;
+    }
+
+    analyser = null;
+
+    btn.innerText = "🎙️ START DETECTION";
+    btn.className = "btn start";
+
+    src.innerText = "TEST STOPPED";
+
+    sourceDetail.innerText =
+        "Press Start Detection to continue.";
+
+    lvl.innerText = "Waiting for microphone...";
+    lvl.className = "status s1";
+
+    analysisMain.innerText = "Measurement stopped";
+
+    analysisReason.innerText =
+        "Microphone monitoring is currently inactive.";
+
+    fill.style.height = "0%";
+
+}
+
+
+/* =========================================================
+   VARIANCE
+   ========================================================= */
 
 function getVariance(arr){
- if(arr.length<5) return 0;
- let avg=arr.reduce((a,b)=>a+b,0)/arr.length;
- let v=0; for(let x of arr) v+=Math.abs(x-avg);
- return v/arr.length;
+
+    if(arr.length < 5){
+        return 0;
+    }
+
+    let avg =
+        arr.reduce((a,b)=>a+b,0) / arr.length;
+
+    let total = 0;
+
+    for(const x of arr){
+        total += Math.abs(x-avg);
+    }
+
+    return total / arr.length;
 }
+
+
+/* =========================================================
+   RMS → ESTIMATED SPL
+   =========================================================
+
+   Browser microphone amplitude is NOT calibrated SPL.
+
+   We therefore use a stable reference mapping rather than
+   pretending the browser has laboratory-grade calibration.
+
+   Calibration offset can be changed later if a known SPL
+   reference meter is available.
+*/
+
+const CALIBRATION_OFFSET = 95;
+
+
+/* =========================================================
+   MAIN ANALYSIS LOOP
+   ========================================================= */
 
 function loop(){
- if(!run) return;
- const timeData=new Float32Array(analyser.fftSize);
- analyser.getFloatTimeDomainData(timeData);
- let sum=0; for(let i=0;i<timeData.length;i++) sum+=timeData[i]*timeData[i];
- let rms=Math.sqrt(sum/timeData.length);
 
- const freqData=new Uint8Array(analyser.frequencyBinCount);
- analyser.getByteFrequencyData(freqData);
+    if(!running || !analyser || !aCtx){
+        return;
+    }
 
- // FIX 1: AVERAGE POWER - sum/count
- let bands=[0,0,0,0], counts=[0,0,0,0], peaks=[0,0,0,0];
- for(let i=0;i<freqData.length;i++){
-   let f=i*aCtx.sampleRate/analyser.fftSize;
-   let idx=-1;
-   if(f<90) idx=0;
-   else if(f<250) idx=1;
-   else if(f<2500) idx=2;
-   else if(f<8000) idx=3;
-   if(idx>=0){ bands[idx]+=freqData[i]; counts[idx]++; peaks[idx]=Math.max(peaks[idx], freqData[i]); }
- }
- let avgPower=bands.map((v,i)=>counts[i]?v/counts[i]:0);
- let total=avgPower.reduce((a,b)=>a+b,0)+0.001;
- let perc=avgPower.map(v=>Math.round(v/total*100));
+    /* TIME DOMAIN */
 
- document.getElementById('sub').innerText=perc[0]+'%';
- document.getElementById('bass').innerText=perc[1]+'%';
- document.getElementById('mid').innerText=perc[2]+'%';
- document.getElementById('high').innerText=perc[3]+'%';
+    const timeData =
+        new Float32Array(analyser.fftSize);
 
- // History for genuine detection
- rmsHistory.push(rms); if(rmsHistory.length>40) rmsHistory.shift();
- for(let i=0;i<4;i++){ bandHistory[i].push(avgPower[i]); if(bandHistory[i].length>40) bandHistory[i].shift(); }
- let variance=getVariance(rmsHistory);
- let bandVar=bandHistory.map(a=>getVariance(a));
+    analyser.getFloatTimeDomainData(timeData);
 
- let db = rms < 0.000008? 22+Math.random()*3 : 20*Math.log10(rms)+95;
- db=Math.max(20,Math.min(120,db));
- let d=Math.round(db); max=Math.max(max,d); tot+=d; cnt++;
+    let sum = 0;
 
- document.getElementById('big').innerText=d;
- document.getElementById('cur').innerText=d+' dB';
- document.getElementById('mx').innerText=max+' dB';
- document.getElementById('av').innerText=(cnt?Math.round(tot/cnt):0)+' dB';
- document.getElementById('fill').style.height=(d/120*100)+'%';
+    for(let i=0;i<timeData.length;i++){
 
- let srcEl=document.getElementById('src'), lvlEl=document.getElementById('lvl');
- let maxIdx=avgPower.indexOf(Math.max(...avgPower));
+        sum += timeData[i] * timeData[i];
 
- // GENUINE SOURCE LOGIC
- if(d<38){
-   srcEl.innerText='🤫 QUIET ROOM'; lvlEl.innerText='Shant - '+d+' dB'; lvlEl.className='status s1';
- }
- else if(d>=38 && d<=68 && (perc[0]+perc[1])>58 && variance<0.009){
-   srcEl.innerText='🌀 CEILING FAN / AC HUM'; lvlEl.innerText='Fan/AC Hum - Continuous - '+d+' dB'; lvlEl.className='status sFan';
- }
- else if(perc[0]>32 && variance>0.018 && d>78 && bandVar[0]>5){
-   srcEl.innerText='🥁 DHOL / DHOLAK BEAT'; lvlEl.innerText='Dhol Thap - '+d+' dB - Sub Dominant '+perc[0]+'%'; lvlEl.className='status s4';
- }
- else if((perc[0]+perc[1])>50 && d>86){
-   srcEl.innerText='🔊 DJ SPEAKER - FULL BASS'; lvlEl.innerText='DJ Box - '+d+' dB - Police Warning'; lvlEl.className='status s4';
- }
- else if(perc[3]>30 && peaks[3]>180 && (peaks[3]-avgPower[3])>35 && d>60){
-   srcEl.innerText='📯 HORN / WHISTLE / SEETI'; lvlEl.innerText='Tez Seeti/Horn - Sharp Peak - '+d+' dB'; lvlEl.className='status s2';
- }
- else if(perc[2]>38 && d>52){
-   srcEl.innerText='🗣️ HUMAN VOICE / CROWD'; lvlEl.innerText='Aadmi ki Awaaz/Bheed - '+d+' dB - Mid '+perc[2]+'%'; lvlEl.className='status s2';
- }
- else if(d>75){
-   srcEl.innerText='🎧 MIXED LOUD - DJ + CROWD'; lvlEl.innerText='Mixed Loud - '+d+' dB'; lvlEl.className='status s3';
- }
- else {
-   srcEl.innerText='🎤 NORMAL SOUND'; lvlEl.innerText='Normal - '+d+' dB - Voice '+perc[2]+'%'; lvlEl.className='status s2';
- }
- requestAnimationFrame(loop);
+    }
+
+    const rms =
+        Math.sqrt(sum / timeData.length);
+
+
+    /* FREQUENCY DOMAIN */
+
+    const freqData =
+        new Uint8Array(analyser.frequencyBinCount);
+
+    analyser.getByteFrequencyData(freqData);
+
+
+    /*
+       Four useful frequency zones
+    */
+
+    let bands = [0,0,0,0];
+    let counts = [0,0,0,0];
+    let peaks = [0,0,0,0];
+
+    for(let i=0;i<freqData.length;i++){
+
+        const frequency =
+            i * aCtx.sampleRate / analyser.fftSize;
+
+        let index = -1;
+
+        if(frequency >= 20 && frequency < 90){
+
+            index = 0;
+
+        }else if(frequency >= 90 && frequency < 250){
+
+            index = 1;
+
+        }else if(frequency >= 250 && frequency < 2500){
+
+            index = 2;
+
+        }else if(frequency >= 2500 && frequency < 8000){
+
+            index = 3;
+
+        }
+
+        if(index >= 0){
+
+            bands[index] += freqData[i];
+            counts[index]++;
+
+            peaks[index] =
+                Math.max(peaks[index],freqData[i]);
+
+        }
+
+    }
+
+
+    const avgPower =
+        bands.map((value,index)=>
+            counts[index]
+                ? value/counts[index]
+                : 0
+        );
+
+
+    const totalPower =
+        avgPower.reduce((a,b)=>a+b,0) + 0.001;
+
+
+    const percentages =
+        avgPower.map(value=>
+            Math.round(value/totalPower*100)
+        );
+
+
+    /* DISPLAY FREQUENCY DATA */
+
+    document.getElementById("sub").innerText =
+        percentages[0]+"%";
+
+    document.getElementById("bass").innerText =
+        percentages[1]+"%";
+
+    document.getElementById("mid").innerText =
+        percentages[2]+"%";
+
+    document.getElementById("high").innerText =
+        percentages[3]+"%";
+
+
+    /* HISTORY */
+
+    rmsHistory.push(rms);
+
+    if(rmsHistory.length > 50){
+        rmsHistory.shift();
+    }
+
+    for(let i=0;i<4;i++){
+
+        bandHistory[i].push(avgPower[i]);
+
+        if(bandHistory[i].length > 50){
+            bandHistory[i].shift();
+        }
+
+    }
+
+
+    const variance =
+        getVariance(rmsHistory);
+
+    const bandVariance =
+        bandHistory.map(getVariance);
+
+
+    /* =====================================================
+       REAL MICROPHONE LEVEL
+       ===================================================== */
+
+    let db;
+
+    if(rms <= 0.000001){
+
+        db = 20;
+
+    }else{
+
+        db =
+            20 * Math.log10(rms) +
+            CALIBRATION_OFFSET;
+
+    }
+
+    db = Math.max(20,Math.min(120,db));
+
+    const currentDb = Math.round(db);
+
+
+    /* STATS */
+
+    maxDb =
+        Math.max(maxDb,currentDb);
+
+    totalDb += currentDb;
+    sampleCount++;
+
+    const averageDb =
+        Math.round(totalDb/sampleCount);
+
+
+    big.innerText = currentDb;
+
+    cur.innerText =
+        currentDb + " dB";
+
+    mx.innerText =
+        maxDb + " dB";
+
+    av.innerText =
+        averageDb + " dB";
+
+
+    /* THERMOMETER */
+
+    const meterPercent =
+        Math.max(
+            0,
+            Math.min(100,currentDb/120*100)
+        );
+
+    fill.style.height =
+        meterPercent + "%";
+
+
+    /* =====================================================
+       SOURCE CLASSIFICATION
+       ===================================================== */
+
+    classifySound(
+        currentDb,
+        percentages,
+        avgPower,
+        peaks,
+        variance,
+        bandVariance
+    );
+
+
+    requestAnimationFrame(loop);
 }
-function draw(){ if(!run){requestAnimationFrame(draw);return;} const data=new Uint8Array(analyser.fftSize); analyser.getByteTimeDomainData(data); wCtx.clearRect(0,0,wave.width,wave.height); wCtx.lineWidth=2.5; wCtx.strokeStyle='#ff3d00'; wCtx.shadowColor='#ff3d00'; wCtx.shadowBlur=10; wCtx.beginPath(); let slice=wave.width/data.length, x=0; for(let i=0;i<data.length;i++){let v=data[i]/128, y=v*wave.height/2; if(i==0)wCtx.moveTo(x,y); else wCtx.lineTo(x,y); x+=slice;} wCtx.stroke(); wCtx.shadowBlur=0; requestAnimationFrame(draw);}
+
+
+/* =========================================================
+   SOUND CLASSIFICATION
+   ========================================================= */
+
+function classifySound(
+    db,
+    p,
+    power,
+    peaks,
+    variance,
+    bandVariance
+){
+
+    /*
+       Quiet
+    */
+
+    if(db < 35){
+
+        src.innerText =
+            "🤫 QUIET / LOW AMBIENT SOUND";
+
+        sourceDetail.innerText =
+            "Very low microphone energy detected.";
+
+        lvl.innerText =
+            "Quiet Environment • " + db + " dB";
+
+        lvl.className = "status s1";
+
+        analysisMain.innerText =
+            "Quiet environment";
+
+        analysisReason.innerText =
+            "No strong bass, voice or high-frequency event detected.";
+
+        return;
+    }
+
+
+    /*
+       Fan / AC / continuous hum
+    */
+
+    if(
+        db >= 35 &&
+        db <= 68 &&
+        (p[0]+p[1]) > 55 &&
+        variance < 0.008
+    ){
+
+        src.innerText =
+            "🌀 FAN / AC / CONTINUOUS HUM";
+
+        sourceDetail.innerText =
+            "Low-frequency energy is steady with little amplitude variation.";
+
+        lvl.innerText =
+            "Continuous Hum • " + db + " dB";
+
+        lvl.className = "status sFan";
+
+        analysisMain.innerText =
+            "Likely fan / AC / motor hum";
+
+        analysisReason.innerText =
+            "Stable low-frequency energy detected without strong transient peaks.";
+
+        return;
+    }
+
+
+    /*
+       Dhol / percussion
+    */
+
+    if(
+        p[0] > 28 &&
+        variance > 0.012 &&
+        db > 65 &&
+        bandVariance[0] > 2
+    ){
+
+        src.innerText =
+            "🥁 DHOL / PERCUSSION";
+
+        sourceDetail.innerText =
+            "Strong low-frequency pulses are repeatedly changing with the signal.";
+
+        lvl.innerText =
+            "Percussive Bass • " + db + " dB";
+
+        lvl.className = "status s4";
+
+        analysisMain.innerText =
+            "Likely dhol / drum / percussion";
+
+        analysisReason.innerText =
+            "Strong sub-bass and bass transients suggest repeated drum-like impacts.";
+
+        return;
+    }
+
+
+    /*
+       DJ / loudspeaker
+    */
+
+    if(
+        (p[0]+p[1]) > 48 &&
+        db > 82
+    ){
+
+        src.innerText =
+            "🔊 DJ / LOUDSPEAKER — BASS HEAVY";
+
+        sourceDetail.innerText =
+            "High overall level with dominant low-frequency energy.";
+
+        lvl.innerText =
+            "LOUD BASS • " + db + " dB";
+
+        lvl.className = "status s4";
+
+        analysisMain.innerText =
+            "Likely loudspeaker / DJ system";
+
+        analysisReason.innerText =
+            "High level combined with strong bass/sub-bass content.";
+
+        return;
+    }
+
+
+    /*
+       Horn / whistle
+    */
+
+    if(
+        p[3] > 27 &&
+        peaks[3] > 170 &&
+        (peaks[3]-power[3]) > 30 &&
+        db > 55
+    ){
+
+        src.innerText =
+            "📯 HORN / WHISTLE / SHARP TONE";
+
+        sourceDetail.innerText =
+            "High-frequency energy contains a sharp transient peak.";
+
+        lvl.innerText =
+            "Sharp High-Frequency Sound • " + db + " dB";
+
+        lvl.className = "status s2";
+
+        analysisMain.innerText =
+            "Likely horn / whistle / sharp tone";
+
+        analysisReason.innerText =
+            "High-frequency peak is significantly stronger than the surrounding spectrum.";
+
+        return;
+    }
+
+
+    /*
+       Human voice / crowd
+    */
+
+    if(
+        p[2] > 38 &&
+        db > 48
+    ){
+
+        src.innerText =
+            "🗣️ HUMAN VOICE / CROWD";
+
+        sourceDetail.innerText =
+            "Most detected energy is concentrated in the speech/mid-frequency range.";
+
+        lvl.innerText =
+            "Voice / Crowd • " + db + " dB";
+
+        lvl.className = "status s2";
+
+        analysisMain.innerText =
+            "Likely human voice / crowd";
+
+        analysisReason.innerText =
+            "Mid-frequency energy dominates the current microphone signal.";
+
+        return;
+    }
+
+
+    /*
+       Loud mixed environment
+    */
+
+    if(db > 75){
+
+        src.innerText =
+            "🎧 MIXED LOUD SOUND";
+
+        sourceDetail.innerText =
+            "Several frequency regions are active at a high overall level.";
+
+        lvl.innerText =
+            "LOUD MIXED SOUND • " + db + " dB";
+
+        lvl.className = "status s3";
+
+        analysisMain.innerText =
+            "Mixed loud environment";
+
+        analysisReason.innerText =
+            "No single frequency pattern is strong enough for a specific classification.";
+
+        return;
+    }
+
+
+    /*
+       Normal sound
+    */
+
+    src.innerText =
+        "🎤 NORMAL AMBIENT SOUND";
+
+    sourceDetail.innerText =
+        "Microphone is detecting normal environmental audio.";
+
+    lvl.innerText =
+        "Normal • " + db + " dB";
+
+    lvl.className = "status s2";
+
+    analysisMain.innerText =
+        "Normal environmental sound";
+
+    analysisReason.innerText =
+        "Audio level is moderate and no dominant signature was detected.";
+}
+
+
+/* =========================================================
+   WAVEFORM
+   ========================================================= */
+
+function drawWave(){
+
+    if(!running || !analyser){
+
+        wCtx.clearRect(
+            0,
+            0,
+            wave.clientWidth,
+            wave.clientHeight
+        );
+
+        return;
+    }
+
+    const data =
+        new Uint8Array(analyser.fftSize);
+
+    analyser.getByteTimeDomainData(data);
+
+    const width = wave.clientWidth;
+    const height = wave.clientHeight;
+
+    wCtx.clearRect(0,0,width,height);
+
+    /* center line */
+
+    wCtx.beginPath();
+
+    wCtx.strokeStyle =
+        "rgba(255,255,255,.08)";
+
+    wCtx.lineWidth = 1;
+
+    wCtx.moveTo(0,height/2);
+    wCtx.lineTo(width,height/2);
+
+    wCtx.stroke();
+
+
+    /* waveform */
+
+    wCtx.beginPath();
+
+    wCtx.lineWidth = 2;
+
+    wCtx.strokeStyle = "#ff3d00";
+
+    wCtx.shadowColor = "#ff3d00";
+    wCtx.shadowBlur = 9;
+
+    const slice =
+        width/data.length;
+
+    let x = 0;
+
+    for(let i=0;i<data.length;i++){
+
+        const v =
+            data[i]/128;
+
+        const y =
+            v * height/2;
+
+        if(i === 0){
+
+            wCtx.moveTo(x,y);
+
+        }else{
+
+            wCtx.lineTo(x,y);
+
+        }
+
+        x += slice;
+    }
+
+    wCtx.stroke();
+
+    wCtx.shadowBlur = 0;
+
+    requestAnimationFrame(drawWave);
+}
+
 </script>
+
 </body>
 </html>
